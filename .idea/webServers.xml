@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9ec27d1e-d9eb-4ab4-bd6f-6159efe5d1e8" name="lvt" url="http://84.237.212.157">
+        <fileTransfer rootFolder="/var/www/lvt2" accessType="SFTP" host="84.237.212.157" port="22" sshConfigId="4165c683-95dc-4eb0-b62e-26a7d3845d0d" sshConfig="root@84.237.212.157:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
