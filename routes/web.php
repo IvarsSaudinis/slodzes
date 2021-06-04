@@ -29,7 +29,10 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
     Route::post('/settings/import-users', [SettingsController::class, 'importUsers'])->name('settings.import-users');
     Route::post('/settings/import-modules', [SettingsController::class, 'importModules'])->name('settings.import-modules');
+    Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
     Route::resource('/settings', SettingsController::class)->name('*', 'settings');
+
+
 
     Route::get('/profile',  [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');

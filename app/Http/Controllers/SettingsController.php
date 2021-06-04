@@ -6,6 +6,8 @@ use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Spatie\DbDumper\Compressors\GzipCompressor;
+use Spatie\DbDumper\Databases\MySql;
 use Spatie\Permission\Models\Role;
 use function PHPUnit\Framework\returnArgument;
 
@@ -46,9 +48,27 @@ class SettingsController extends Controller
     {
         Excel::import(new ModulesImport(), $request->file('module_import')->store('temp'));
 
-        return back()->with(['message'=>'Dati importēti!']);;
+        return back()->with(['message'=>'Dati importēti!']);
     }
 
+
+    /**
+     * SQL dump lejupielāde
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function dumpSql()
+    {
+        $filename = 'sistema_'. time() . '.sql.gz';
+
+        MySql::create()
+            ->setDbName(config('database.connections.mysql.database'))
+            ->setUserName(config('database.connections.mysql.username'))
+            ->setPassword(config('database.connections.mysql.password'))
+            ->useCompressor(new GzipCompressor())
+            ->dumpToFile($filename);
+
+        return response()->download($filename)->deleteFileAfterSend();
+    }
 
     /**
      * Show the form for creating a new resource.
