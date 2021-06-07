@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1777f2d1b5f9c1323f23bed192f52ef8",
+    "content-hash": "7540c12d3f73ca1ead368d1be69e66de",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4640,6 +4640,70 @@
                 "source": "https://github.com/Seldaek/phar-utils/tree/master"
             },
             "time": "2020-07-07T18:42:57+00:00"
+        },
+        {
+            "name": "spatie/db-dumper",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/db-dumper.git",
+                "reference": "1364325f3f3c5b7cdafd46bca5e9d422227a34d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/1364325f3f3c5b7cdafd46bca5e9d422227a34d2",
+                "reference": "1364325f3f3c5b7cdafd46bca5e9d422227a34d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/process": "^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DbDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dump databases",
+            "homepage": "https://github.com/spatie/db-dumper",
+            "keywords": [
+                "database",
+                "db-dumper",
+                "dump",
+                "mysqldump",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/db-dumper/issues",
+                "source": "https://github.com/spatie/db-dumper/tree/3.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-04-01T07:28:47+00:00"
         },
         {
             "name": "spatie/laravel-permission",

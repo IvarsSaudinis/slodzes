@@ -8,6 +8,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlansController;
+use App\Http\Controllers\ImportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,12 +28,12 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/users',   UsersController::class)->name('*', 'users');
     Route::resource('/roles',   RolesController::class)->name('*', 'roles');
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
-    Route::post('/settings/import-users', [SettingsController::class, 'importUsers'])->name('settings.import-users');
-    Route::post('/settings/import-modules', [SettingsController::class, 'importModules'])->name('settings.import-modules');
-    Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
+      Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
     Route::resource('/settings', SettingsController::class)->name('*', 'settings');
 
-
+    Route::post('/import/users', [ImportController::class, 'importUsers'])->name('import.users');
+    Route::post('/import/modules', [ImportController::class, 'importModules'])->name('import.modules');
+    Route::resource('/import', ImportController::class)->name('*', 'import');
 
     Route::get('/profile',  [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');

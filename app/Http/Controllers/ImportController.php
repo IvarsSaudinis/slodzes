@@ -6,12 +6,9 @@ use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Spatie\DbDumper\Compressors\GzipCompressor;
-use Spatie\DbDumper\Databases\MySql;
 use Spatie\Permission\Models\Role;
-use function PHPUnit\Framework\returnArgument;
 
-class SettingsController extends Controller
+class ImportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,28 +19,33 @@ class SettingsController extends Controller
     {
         $roles = Role::all();
 
-        return view('settings.index', compact('roles'));
+        return view('import.index', compact('roles'));
     }
 
+    /**
+     * Importē lietotāju sarakstu no xls/csv faila
+     *
+     * @param Request $request
+     */
+    public function importUsers(Request $request)
+    {
+        $roles = $request->input('role');
 
+        Excel::import(new UsersImport($roles), $request->file('user_import')->store('temp'));
 
+        return back()->with(['message'=>'Dati importēti!']);
+    }
 
     /**
-     * SQL dump lejupielāde
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * Importē moduļu sarakstu no xls/csv faila
+     *
+     * @param Request $request
      */
-    public function dumpSql()
+    public function importModules(Request $request)
     {
-        $filename = 'sistema_'. time() . '.sql.gz';
+        Excel::import(new ModulesImport(), $request->file('module_import')->store('temp'));
 
-        MySql::create()
-            ->setDbName(config('database.connections.mysql.database'))
-            ->setUserName(config('database.connections.mysql.username'))
-            ->setPassword(config('database.connections.mysql.password'))
-            ->useCompressor(new GzipCompressor())
-            ->dumpToFile($filename);
-
-        return response()->download($filename)->deleteFileAfterSend();
+        return back()->with(['message'=>'Dati importēti!']);
     }
 
     /**

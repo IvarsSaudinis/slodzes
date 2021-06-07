@@ -17,11 +17,11 @@
                         {{ __('Darbavirsma') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans')">
+                    <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                         {{ __('Mācību plāni') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('modules.index')" :active="request()->routeIs('modules')">
+                    <x-nav-link :href="route('modules.index')" :active="request()->routeIs('modules.*')">
                         {{ __('Moduļi') }}
                     </x-nav-link>
 
@@ -30,10 +30,13 @@
                         {{ __('Lietotāji') }}
                     </x-nav-link>
                     @endcan
-
                    {{-- <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.*')">
                         {{ __('Lomas') }}
                     </x-nav-link>--}}
+
+                    <x-nav-link :href="route('import.index')" :active="request()->routeIs('import')">
+                        {{ __('Importēšana') }}
+                    </x-nav-link>
 
                     <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings')">
                         {{ __('Konfigurācija') }}
