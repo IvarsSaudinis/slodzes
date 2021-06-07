@@ -53,12 +53,12 @@
 
 
             </div>
-                <div class="flex items-center  mt-4">
-                    <hr class="divide-dotted"/>
+
+                    <div class="relative mt-6 mb-3"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-300"></div></div><div class="relative flex justify-center text-sm leading-5"><span class="px-2 text-gray-500 bg-white">Pieteikties ar citu kontu</span></div></div>
                     <button type="button" class="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                        Pietiekties ar MS 365 kontu
+                        MS 365 konts
                     </button>
-                </div>
+
         </form>
     </x-auth-card>
 </x-guest-layout>
