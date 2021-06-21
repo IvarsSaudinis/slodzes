@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
+use App\Models\Plan;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
@@ -37,13 +39,28 @@ class ImportController extends Controller
     }
 
     /**
-     * Importē moduļu sarakstu no xls/csv faila
+     * Importē plānā moduļu sarakstu no xls/csv faila
      *
      * @param Request $request
      */
     public function importModules(Request $request)
     {
-        Excel::import(new ModulesImport(), $request->file('module_import')->store('temp'));
+        $validated = $request->validate([
+            'plan_name' => 'required|max:255',
+            'year' => 'required|numeric|min:1901|max:2155',
+        ]);
+
+        // Jauna plāna izveide
+        $plan = new Plan();
+        $plan->name = $request->get('plan_name');
+        $plan->year = $request->get('year');
+        $plan->save();
+
+
+
+        $plan = [$plan->id];
+
+        Excel::import(new ModulesImport($plan), $request->file('module_file')->store('temp'));
 
         return back()->with(['message'=>'Dati importēti!']);
     }
