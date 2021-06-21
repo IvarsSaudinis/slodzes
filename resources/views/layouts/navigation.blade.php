@@ -34,11 +34,11 @@
                         {{ __('Lomas') }}
                     </x-nav-link>--}}
 
-                    <x-nav-link :href="route('import.index')" :active="request()->routeIs('import')">
+                    <x-nav-link :href="route('import.index')" :active="request()->routeIs('import.*')">
                         {{ __('Importēšana') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings')">
+                    <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings.*')">
                         {{ __('Konfigurācija') }}
                     </x-nav-link>
                 </div>
