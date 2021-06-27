@@ -1,5 +1,5 @@
-require('./bootstrap');
+// require('./bootstrap');
 
 require('alpinejs');
 
-Livewire.emit('some-event', 'foo', 'bar')
+//Livewire.emit('some-event', 'foo', 'bar')
