@@ -1,20 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Konfigurācija') }}
-        </h2>
     </x-slot>
 
     <div class="py-12">
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <x-message>{{ session('message') }}</x-message>
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
                  <div class="mt-10 sm:mt-0">
                     <div class="md:grid md:grid-cols-3 md:gap-6">
                         <div class="md:col-span-1">
                             <div class="px-4 sm:px-0">
-                                <h3 class="text-lg font-medium leading-6 text-gray-900">Lomu pārvadlība</h3>
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Lomu pārvaldība</h3>
                                 <p class="mt-1 text-sm text-gray-600">
                                     Lomu kategorijas izveide, jaunu tiesību piešķiršana
                                 </p>

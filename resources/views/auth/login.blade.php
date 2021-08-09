@@ -25,7 +25,7 @@
 
                             <div class="mt-1 grid grid-cols-1  ">
                                 <div>
-                                    <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <a href="{{ route('auth365') }}" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                                         <span class="sr-only">Autorizētiess ar MS 365</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path d="M12 14l9-5-9-5-9 5 9 5z" />
