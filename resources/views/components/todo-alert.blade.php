@@ -12,7 +12,7 @@
             </h3>
             <div class="mt-2 text-sm text-yellow-700">
                 <p>
-                   Šī sadaļa atrodas izstrādes režīmā un nav funkcionāla. Tomēr tā ir aktīva, lai parādītu potencialās iespējas nākotnē.
+                   Šī sadaļa atrodas izstrādes režīmā.
                 </p>
             </div>
         </div>

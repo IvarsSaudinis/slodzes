@@ -3,7 +3,7 @@
         <div class="mt-1 justify-self-start rounded-md shadow-sm">
             <input wire:model="searchTerm" type="text" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Meklēt...">
         </div>
-        <x-link-button href="#" class="mr-0">Pievienot mācību plānu</x-link-button>
+        <x-link-button href="{{ route('import.index') }}" class="mr-0">Importēt mācību plānu</x-link-button>
     </div>
 
     <div class="flex flex-col pt-4">
@@ -43,8 +43,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">-</td>
-                                <td class="px-6 py-4 whitespace-nowrap">=</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $plan->data->count() }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">?</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
                                         <a href="#" class="text-gray-600 hover:text-indigo-900">Labot</a>

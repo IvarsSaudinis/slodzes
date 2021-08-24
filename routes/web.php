@@ -40,9 +40,10 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    /* Testa plāni */
+
 
     Route::get('plans/{id}', [PlansController::class, 'show'])->name('plans.show');
+    Route::get('plans/{id}/edit', [PlansController::class, 'edit'])->name('plans.edit');
     Route::get('/plans',  [PlansController::class, 'index'])->name('plans.index');
 
 

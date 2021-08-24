@@ -9,7 +9,9 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <x-message>{{ session('message') }}</x-message>
+            <x-message>
+                {{ session('message') }}
+            </x-message>
 
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
 

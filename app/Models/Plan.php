@@ -11,4 +11,14 @@ class Plan extends Model
 
     protected $table = 'plan';
 
+    /**
+     * Get plan data
+     */
+    public function data()
+    {
+        return $this->hasMany(PlanData::class);
+    }
+
+
+
 }

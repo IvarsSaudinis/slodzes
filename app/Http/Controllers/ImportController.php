@@ -64,7 +64,7 @@ class ImportController extends Controller
 
         Excel::import($module_import, $request->file('module_file')->store('temp'));
 
-        return back()->with(['message'=>'Dati importēti! Kopā ' . $module_import->getRowCount() . ' rindas']);
+        return back()->with(['message'=>'Dati importēti! Kopā ' . $module_import->getRowCount() . ' rindas.']);
     }
 
     /**

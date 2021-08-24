@@ -22,6 +22,13 @@ class PlansController extends Controller
      */
     public function show($id)
     {
-        return view('plans.show');
+        $plan = Plan::where('id', $id)->with(['data'])->first();
+
+        return view('plans.show', compact('plan'));
+    }
+
+    public function edit($id)
+    {
+        return view('plans.form');
     }
 }
