@@ -115,8 +115,8 @@
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <p class="block px-4 py-2 text-sm text-gray-700 font-bold" > {{ Auth::user()->name }} {{ Auth::user()->surname }}</p>
 
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Profils</a>
-                                {{--   <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>--}}
+                                {{--<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Profils</a>
+                               --}} {{--   <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>--}}
                                 <form id="logout" method="post" action="{{ route('logout') }}">
                                     @csrf
                                     <a  href="javascript:;" onclick="document.getElementById('logout').submit();"  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Iziet</a>
