@@ -24,6 +24,8 @@ class PlansController extends Controller
     {
         $plan = Plan::where('id', $id)->with(['data'])->first();
 
+        if(is_null($plan))  return  abort('404');
+
         return view('plans.show', compact('plan'));
     }
 
