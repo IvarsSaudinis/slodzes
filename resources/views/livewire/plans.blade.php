@@ -29,21 +29,22 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
 
+                        @foreach($plans as $plan)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="">
                                             <div class="text-sm font-medium text-gray-900">
-                                                <a href="{{ url('plans/1') }}">Elektortehniķis </a>
+                                                <a href="{{ route('plans.show', $plan->id) }}">{{ $plan->name }} </a>
                                             </div>
                                             <div class="text-sm text-gray-400">
-                                               2019
+                                                {{ $plan->year }}
                                             </div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">36</td>
-                                <td class="px-6 py-4 whitespace-nowrap">2732</td>
+                                <td class="px-6 py-4 whitespace-nowrap">-</td>
+                                <td class="px-6 py-4 whitespace-nowrap">=</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
                                         <a href="#" class="text-gray-600 hover:text-indigo-900">Labot</a>
@@ -53,7 +54,7 @@
 
                                 </td>
                             </tr>
-
+                        @endforeach
 
                         </tbody>
                     </table>

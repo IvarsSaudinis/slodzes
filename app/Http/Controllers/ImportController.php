@@ -60,9 +60,11 @@ class ImportController extends Controller
 
         $plan = [$plan->id];
 
-        Excel::import(new ModulesImport($plan), $request->file('module_file')->store('temp'));
+        $module_import = new ModulesImport($plan);
 
-        return back()->with(['message'=>'Dati importēti!']);
+        Excel::import($module_import, $request->file('module_file')->store('temp'));
+
+        return back()->with(['message'=>'Dati importēti! Kopā ' . $module_import->getRowCount() . ' rindas']);
     }
 
     /**

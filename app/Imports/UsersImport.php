@@ -14,6 +14,8 @@ class UsersImport implements OnEachRow,  WithHeadingRow
 
     private $roles;
 
+    private $rows = 0;
+
     public function  __construct($roles)
     {
         $this->roles = $roles;
@@ -49,6 +51,11 @@ class UsersImport implements OnEachRow,  WithHeadingRow
     public function startRow(): int
     {
         return 1;
+    }
+
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 
 

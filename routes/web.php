@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function() {
 
     /* Testa plāni */
 
-    Route::get('plans/1', [PlansController::class, 'show'])->name('plans.show');
+    Route::get('plans/{id}', [PlansController::class, 'show'])->name('plans.show');
     Route::get('/plans',  [PlansController::class, 'index'])->name('plans.index');
 
 

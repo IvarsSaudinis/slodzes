@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PlansController extends Controller
 {
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
-        return view('plans.index');
+        $plans = Plan::all();
+
+        return view('plans.index', compact('plans'));
     }
 
-    public function show()
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function show($id)
     {
         return view('plans.show');
     }

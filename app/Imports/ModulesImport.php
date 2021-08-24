@@ -6,6 +6,7 @@ use App\Models\Modules;
 use App\Models\Plan;
 use App\Models\PlanData;
 use App\Models\PlanDistribution;
+use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
@@ -18,6 +19,8 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
     use Importable;
 
     private $plan;
+
+    private $rows = 0;
 
     public function  __construct($plan)
     {
@@ -55,6 +58,168 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
         $teorija = $row['teorija'];
         $prakse  = $row['prakse'];
 
+        $kopaa = $teorija + $prakse;
+
+
+        if($row['1_kurss']>0)
+         {
+             $pd = new PlanDistribution();
+             $pd->plan_data_id = $data->id;
+             $pd->course = 1;
+             //1 = tikai viens ieraksts
+             if($row['1_kurss']==($prakse + $teorija))
+             {
+                 $pd->theory = $teorija ?? 0 ;
+                 $pd->practice = $prakse ?? 0;
+
+                 $teorija = 0;
+                 $prakse = 0;
+             }
+             // ir kaut kas cits
+             else {
+                 // atlikuma rēķināšana praksei
+                 if($row['1_kurss'] > $teorija)
+                 {
+                     $pd->theory = $teorija;
+                     $pd->practice = $row['1_kurss'] - $teorija;
+                     // atlikušā prakse
+                     $teorija = 0;
+                     $prakse =  $prakse - $pd->practice;
+
+                 }
+
+                 if($row['1_kurss'] < $teorija)
+                 {
+                     $pd->theory = $row['1_kurss'];
+                     $pd->practice = 0;
+                     // atlikušā teorija
+                     $teorija = $teorija - $pd->theory ;
+                 }
+
+             }
+
+             $pd->save();
+         }
+
+        if($row['2_kurss']>0)
+        {
+            $pd = new PlanDistribution();
+            $pd->plan_data_id = $data->id;
+            $pd->course = 2;
+            //1 = tikai viens ieraksts
+            if($row['2_kurss']==($prakse + $teorija))
+            {
+                $pd->theory = $teorija ?? 0 ;
+                $pd->practice = $prakse ?? 0;
+
+                $teorija = 0;
+                $prakse = 0;
+            }
+            // ir kaut kas cits
+            else {
+                // atlikuma rēķināšana praksei
+                if($row['2_kurss'] > $teorija)
+                {
+                    $pd->theory = $teorija;
+                    $pd->practice = $row['2_kurss'] - $teorija;
+                    // atlikušā prakse
+                    $teorija = 0;
+                    $prakse =  $prakse - $pd->practice;
+
+                }
+
+                if($row['2_kurss'] < $teorija)
+                {
+                    $pd->theory = $row['2_kurss'];
+                    $pd->practice = 0;
+                    // atlikušā teorija
+                    $teorija = $teorija - $pd->theory ;
+                }
+
+
+            }
+
+            $pd->save();
+        }
+
+        if($row['3_kurss']>0)
+        {
+            $pd = new PlanDistribution();
+            $pd->plan_data_id = $data->id;
+            $pd->course = 3;
+            //1 = tikai viens ieraksts
+            if($row['3_kurss']==($prakse + $teorija))
+            {
+                $pd->theory = $teorija ?? 0 ;
+                $pd->practice = $prakse ?? 0;
+
+                $teorija = 0;
+                $prakse = 0;
+            }
+            // ir kaut kas cits
+            else {
+                // atlikuma rēķināšana praksei
+                if($row['3_kurss'] > $teorija)
+                {
+                    $pd->theory = $teorija;
+                    $pd->practice = $row['3_kurss'] - $teorija;
+                    // atlikušā prakse
+                    $teorija = 0;
+                    $prakse =  $prakse - $pd->practice;
+
+                }
+                if($row['3_kurss'] < $teorija)
+                {
+                    $pd->theory = $row['3_kurss'];
+                    $pd->practice = 0;
+                    // atlikušā teorija
+                    $teorija = $teorija - $pd->theory ;
+                }
+
+            }
+
+            $pd->save();
+        }
+
+        if($row['4_kurss']>0)
+        {
+            $pd = new PlanDistribution();
+            $pd->plan_data_id = $data->id;
+            $pd->course =4;
+            //1 = tikai viens ieraksts
+            if($row['4_kurss']==($prakse + $teorija))
+            {
+                $pd->theory = $teorija ?? 0 ;
+                $pd->practice = $prakse ?? 0;
+
+                $teorija = 0;
+                $prakse = 0;
+            }
+            // ir kaut kas cits
+            else {
+                // atlikuma rēķināšana praksei
+                if($row['4_kurss'] > $teorija)
+                {
+                    $pd->theory = $teorija;
+                    $pd->practice = $row['4_kurss'] - $teorija;
+                    // atlikušā prakse
+                    $teorija = 0;
+                    $prakse =  $prakse - $pd->practice;
+
+                }
+
+                if($row['4_kurss'] < $teorija)
+                {
+                    $pd->theory = $row['4_kurss'];
+                    $pd->practice = 0;
+                    // atlikušā teorija
+                    $teorija = $teorija - $pd->theory ;
+                }
+            }
+
+            $pd->save();
+        }
+
          \Log::info("--------------------");
          \Log::info($row['modula_nosaukums']);
          \Log::info("1. kurss: " . $row['1_kurss']);
@@ -64,8 +229,8 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
          \Log::info("Teorija: "  . $row['teorija']);
          \Log::info("Prakse: "   . $row['prakse']);
 
+        ++$this->rows;
 
-         
 
     }
     /**
@@ -97,6 +262,11 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
         return [
             'modula_nosaukums.required' => 'Šajā kolonā nepieciešami dati :attribute.',
         ];
+    }
+
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 
 }
