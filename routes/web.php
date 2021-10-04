@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\TimeSettingsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +30,8 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/users',   UsersController::class)->name('*', 'users');
     Route::resource('/roles',   RolesController::class)->name('*', 'roles');
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
-      Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
+    Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
+    Route::get('/settings/time-settings', [TimeSettingsController::class, 'index'])->name('settings.time');
     Route::resource('/settings', SettingsController::class)->name('*', 'settings');
 
     Route::post('/import/users', [ImportController::class, 'importUsers'])->name('import.users');
