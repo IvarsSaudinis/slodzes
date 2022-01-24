@@ -1,0 +1,13 @@
+name: lvt
+recipe: laravel
+config:
+  webroot: app/public
+  php: '8.0'
+  xdebug: true
+  database: mariadb:10.3
+proxy:
+  appserver:
+    - lvt.local
+services:
+  database:
+    portforward: 37080
