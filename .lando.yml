@@ -1,7 +1,7 @@
 name: lvt
 recipe: laravel
 config:
-  webroot: app/public
+  webroot: public
   php: '8.0'
   xdebug: true
   database: mariadb:10.3
