@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\DbDumper\Compressors\GzipCompressor;
@@ -44,6 +45,30 @@ class SettingsController extends Controller
             ->dumpToFile($filename);
 
         return response()->download($filename)->deleteFileAfterSend();
+    }
+
+
+    /**
+     * Definē sesijā pieejamo gadu
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setYear(Request $request)
+    {
+        $year = $request->get('year');
+
+        // reseto izvēlēto mācibu gadu
+        if ($year == "-1") {
+            session(['schoolYear' => null]);
+        }
+
+        // sesijā saglabā izvēlētos mācību gadu
+        if (in_array($year, Plan::getAvailableYears()->toArray())) {
+            session(['schoolYear' => $year]);
+        }
+
+        return back();
     }
 
     /**
