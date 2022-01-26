@@ -3,7 +3,9 @@
         <div class="mt-1 justify-self-start rounded-md shadow-sm">
             <input wire:model="searchTerm" type="text" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Meklēt...">
         </div>
-        <x-link-button href="{{ route('import.index') }}" class="mr-0">Importēt mācību plānu</x-link-button>
+        @can('create', \App\Models\Plan::class)
+            <x-link-button href="{{ route('import.index') }}" class="mr-0">Importēt mācību plānu</x-link-button>
+        @endcan
     </div>
 
     <div class="flex flex-col pt-4">
@@ -23,7 +25,7 @@
                                 Mācību slodze stundās
                             </th>
                             <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Labot</span>
+                                <span class="sr-only">Darbības</span>
                             </th>
                         </tr>
                         </thead>
@@ -47,10 +49,19 @@
                                 <td class="px-6 py-4 whitespace-nowrap">?</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                                        <a href="#" class="text-gray-600 hover:text-indigo-900">Labot</a>
-                                        <button onclick="return confirm('Tiešām vēlaties dzēst?')" type="submit" class="bg-gray-100 hover:bg-grey-200 text-red-400 font-bold py-2 px-2 mx-2 rounded inline-flex items-center">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    @can('update', $plan)
+                                        <a href="{{ route('plans.edit', $plan) }}" class="text-gray-600 hover:text-indigo-900">Labot</a>
+                                    @endcan
+                                    @can('delete',$plan)
+                                            <form class="inline-block" action="{{ route('plans.destroy', $plan) }}" method="post">
+                                                @method('DELETE')  @csrf
+                                                <button onclick="return confirm('Tiešām vēlaties dzēst?')" type="submit"
+                                                        class="bg-gray-100 hover:bg-grey-200 text-red-400 font-bold py-2 px-2 mx-2 rounded inline-flex items-center">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                    @endcan
+
 
                                 </td>
                             </tr>

@@ -33,4 +33,10 @@ class PlansController extends Controller
     {
         return view('plans.form');
     }
+
+
+    public function destroy(Plan $plan) {
+        //todo
+        dd("Deleting not implemented!", $plan->toArray());
+    }
 }

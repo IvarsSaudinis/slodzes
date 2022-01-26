@@ -36,43 +36,37 @@ class ModulesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        abort_if(\Auth::user()->cannot('modules-create'), '403');
+        //todo: store requst, kas validētu vai ir cipari un vajadzīgie lauki
 
         $module = new Modules();
         $module->name = $request->input('name');
         $module->modules_type_id = $request->input('modules_type_id');
         $module->code = $request->input('code');
-        $module->theory =   $request->input('theory');
-        $module->practice =  $request->input('practice');
+        $module->theory = $request->input('theory');
+        $module->practice = $request->input('practice');
         $module->save();
 
-        return redirect()->route('modules.index')->with(['message'=>'Modulis veiksmīgi izveidots!']);
+        return redirect()->route('modules.index')->with(['message' => 'Modulis veiksmīgi izveidots!']);
 
     }
-
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Modules  $modules
+     * @param \App\Models\Modules $modules
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Modules $module)
     {
-        abort_if(\Auth::user()->cannot('modules-edit'), '403');
-
-        $module = Modules::findOrFail($id);
-
         $modules_type = DB::table('modules_types')->get();
 
         return view('modules.createOrUpdate', compact('module', 'modules_type'));
-
     }
 
     /**
@@ -82,19 +76,17 @@ class ModulesController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Modules $module)
     {
-        abort_if(\Auth::user()->cannot('modules-edit'), '403');
+        $module->update($request->all());
+//        $module->name = $request->input('name');
+//        $module->modules_type_id = $request->input('modules_type_id');
+//        $module->code = $request->input('code');
+//        $module->theory = $request->input('theory');
+//        $module->practice = $request->input('practice');
+        //  $module->save();
 
-        $module = Modules::find($id);
-        $module->name = $request->input('name');
-        $module->modules_type_id = $request->input('modules_type_id');
-        $module->code = $request->input('code');
-        $module->theory =   $request->input('theory');
-        $module->practice =  $request->input('practice');
-        $module->save();
-
-        return redirect()->route('modules.index')->with(['message'=>'Modulis veiksmīgi saglabāts!']);
+        return redirect()->route('modules.index')->with(['message' => 'Modulis veiksmīgi saglabāts!']);
     }
 
     /**
@@ -103,12 +95,10 @@ class ModulesController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Modules $module)
     {
-        $modules = Modules::findOrFail($id);
+        $module->delete();
 
-        $modules->delete();
-
-        return back()->with(['message'=>'Modulis veiksmīgi izdzēsts!']);
+        return back()->with(['message' => 'Modulis veiksmīgi izdzēsts!']);
     }
 }
