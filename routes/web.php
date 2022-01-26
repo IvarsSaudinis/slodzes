@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
     Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
     Route::get('/settings/time-settings', [TimeSettingsController::class, 'index'])->name('settings.time');
+    Route::post('settings/year',[SettingsController::class,'setYear'])->name('settings.setYear');
     Route::resource('/settings', SettingsController::class)->name('*', 'settings');
 
     Route::post('/import/users', [ImportController::class, 'importUsers'])->name('import.users');

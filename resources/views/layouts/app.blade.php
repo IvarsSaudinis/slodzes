@@ -19,7 +19,7 @@
     </head>
     <body class="font-sans antialiased">
 
-    <div  x-data="{ open: false, menuOpen:false }" @keydown.window.escape="open = false" class="h-screen flex overflow-hidden bg-gray-100">
+    <div  x-data="{ open: false, menuOpen:false, yearsOpen:false }" @keydown.window.escape="open = false" class="h-screen flex overflow-hidden bg-gray-100">
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div x-show="open" class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
 
@@ -100,6 +100,52 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
                         </button>--}}
+                           <div class="relative inline-block text-left">
+                               <div>
+                                   <button title="Mācību gads" @click="yearsOpen = !yearsOpen"  type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+
+                                       @if($schoolYear)
+                                            {{$schoolYear}}
+                                       @else
+                                           Mācību gads
+                                       @endif
+                                       <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                       </svg>
+                                   </button>
+                               </div>
+
+                               <!--
+                                 Dropdown menu, show/hide based on menu state.
+
+                                 Entering: "transition ease-out duration-100"
+                                   From: "transform opacity-0 scale-95"
+                                   To: "transform opacity-100 scale-100"
+                                 Leaving: "transition ease-in duration-75"
+                                   From: "transform opacity-100 scale-100"
+                                   To: "transform opacity-0 scale-95"
+                               -->
+                               <div :hidden="!yearsOpen"
+                                    class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                   <div class="py-1" role="none">
+                                       <form id="setYear" class=" divide-y divide-gray-100 " method="post" action="{{ route('settings.setYear') }}">
+                                           @csrf
+                                           <div class="py-1">
+                                               <button name="year" value="-1" class="text-gray-700 text-left block px-4 py-2 block" style="width: 100%" role="menuitem" tabindex="-1" id="menu-item-0">Visi gadi</button>
+                                           </div>
+                                         <div  class="py-1">
+                                             @foreach($availableYears as $y)
+                                                 <button name="year" value="{{$y}}"  style="width: 100%"  class="text-gray-700 text-left block px-4 py-2 text-sm block @if($y === $schoolYear) bg-gray-100 text-gray-900 @endif" role="menuitem" tabindex="-1" id="menu-item-0">{{$y}}</button>
+                                             @endforeach
+                                         </div>
+
+
+                                       </form>
+                                   </div>
+                               </div>
+                           </div>
+
 
                         <!-- Profile dropdown -->
                         <div class="ml-3 relative">
