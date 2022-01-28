@@ -33,7 +33,7 @@ class Plan extends Model
      */
     public static function getAvailableYears()
     {
-        return Plan::withoutGlobalScope(SchoolYearScope::class)->select('year')->distinct()->get()->pluck('year');
+      //  return Plan::withoutGlobalScope(SchoolYearScope::class)->select('year')->distinct()->get()->pluck('year');
     }
 
 }
