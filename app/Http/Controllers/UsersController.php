@@ -17,7 +17,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        abort_if(\Auth::user()->cannot('users-list'), '403');
 
         return view('users.index');
     }
@@ -29,8 +28,6 @@ class UsersController extends Controller
      */
     public function create()
     {
-        abort_if(\Auth::user()->cannot('users-create'), '403');
-
         $roles = Role::all();
 
         return view('users.createOrUpdate', compact('roles'));
@@ -44,7 +41,6 @@ class UsersController extends Controller
      */
     public function store(StoreUserPostRequest $request)
     {
-        abort_if(\Auth::user()->cannot('users-create'), '403');
 
         $user = new User();
         $user->name = $request->input('name');
@@ -68,12 +64,8 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        abort_if(\Auth::user()->cannot('users-edit'), '403');
-
-        $user = User::findOrFail($id);
-
         $roles = Role::all();
 
         return view('users.createOrUpdate', compact('roles', 'user'));
@@ -88,11 +80,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserPostRequest $request, $id)
+    public function update(StoreUserPostRequest $request, User $user)
     {
-        abort_if(\Auth::user()->cannot('users-edit'), '403');
 
-        $user = User::find($id);
         $user->name = $request->input('name');
         $user->surname = $request->input('surname');
         $user->job_title = $request->input('job_title');
@@ -124,15 +114,16 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+        if ($user->delete()) {
 
-        $user->delete();
+            return back()->with(['message' => 'Lietotājs veiksmīgi izdzēsts!']);
+        }
 
-        return back()->with(['message'=>'Lietotājs veiksmīgi izdzēsts!']);
+        return back()->with(['message' => 'Kļūda dzēšanā!']);
     }
 }

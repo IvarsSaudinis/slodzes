@@ -43,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Statiska izstrādātāja loma
+     * @return bool
+     */
+    public function isDeveloper()
+    {
+        return $this->attributes['email'] === 'ivars@ivars.lv';
+    }
 }
