@@ -26,7 +26,7 @@ composer:
       - vendor/
   script:
     - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-    - cp .env.example .env
+    - cp .env.testing .env
     - php artisan key:generate
   artifacts:
     expire_in: 1 month
