@@ -70,7 +70,11 @@ class CreateDatesTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(['edu_year','edu_week', 'edu_week_type', 'edu_date', 'edu_holidays']);
+        Schema::dropIfExists('edu_week');
+        Schema::dropIfExists('edu_year');
+        Schema::dropIfExists('edu_week_type');
+        Schema::dropIfExists('edu_date');
+        Schema::dropIfExists('edu_holidays');
     }
 
 
