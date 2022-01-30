@@ -20,10 +20,10 @@ class PlanPolicy
     public function before(User $user, $ability)
     {
         // iestrādāt ja grib pārrakstīt pārējās atļaujas
-//        if ($user->isDeveloper()) {
-//
-//            return true;
-//        }
+      if ($user->isDeveloper()) {
+
+            return true;
+      }
     }
 
     /**
@@ -34,7 +34,7 @@ class PlanPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole(['Administrators', 'Mācībspeks', 'Lietotājs']);
+        return $user->hasRole(['Administrators', 'Mācībspēks', 'Lietotājs']);
     }
 
     /**

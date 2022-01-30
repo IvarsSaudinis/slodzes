@@ -20,10 +20,10 @@ class UserPolicy
     public function before(User $user, $ability)
     {
         // iestrādāt ja grib pārrakstīt pārējās atļaujas
-//        if ($user->isDeveloper()) {
-//
-//            return true;
-//        }
+        if ($user->isDeveloper()) {
+
+            return true;
+        }
     }
 
 
