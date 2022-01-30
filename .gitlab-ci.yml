@@ -1,4 +1,4 @@
-image: kirschbaumdevelopment/laravel-test-runner:8.1
+image: kirschbaumdevelopment/laravel-test-runner:8.0
 
 composer:
   stage: build
