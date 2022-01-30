@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         // create basic roles
         // @ https://spatie.be/docs/laravel-permission/v5/basic-usage/basic-usage
-        Role::create(['name'=> 'Administartors']);
+        Role::create(['name'=> 'Administrators']);
         Role::create(['name'=> 'Mācībspēks']);
         Role::create(['name'=> 'Lietotājs']);
 
