@@ -26,6 +26,8 @@ class AddJobToUsersTable extends Migration
      */
     public function down()
     {
+        DB::table('users')->truncate();
+
         Schema::table('users', function (Blueprint $table) {
             $table->integer('surname')->change();
             $table->dropColumn('job_title');
