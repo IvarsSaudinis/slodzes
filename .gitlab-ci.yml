@@ -1,4 +1,4 @@
-image: lorisleiva/laravel-docker:latest
+image: kirschbaumdevelopment/laravel-test-runner:8.1
 
 composer:
   stage: build
