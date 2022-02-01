@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
         <script src="//unpkg.com/alpinejs" defer></script>
         @livewireStyles
+        @powerGridStyles
 
     </head>
     <body class="font-sans antialiased">
@@ -203,6 +204,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     @livewireScripts
+    @powerGridScripts
 
 </html>
 
