@@ -30,10 +30,14 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/users',   UsersController::class)->name('*', 'users');
     Route::resource('/roles',   RolesController::class)->name('*', 'roles');
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
-    Route::get('/settings/backup', [SettingsController::class, 'dumpSql'])->name('settings.backup');
-    Route::get('/settings/time-settings', [TimeSettingsController::class, 'index'])->name('settings.time');
-    Route::post('settings/year',[SettingsController::class,'setYear'])->name('settings.setYear');
-    Route::resource('/settings', SettingsController::class)->name('*', 'settings');
+
+    Route::prefix('/settings')->name('settings.')->group(function () {
+        Route::get('/backup', [SettingsController::class, 'dumpSql'])->name('backup');
+        Route::get('/time-settings', [TimeSettingsController::class, 'index'])->name('time');
+        Route::post('/year', [SettingsController::class, 'setYear'])->name('setYear');
+        Route::resource('/', SettingsController::class)->name('*', '');
+    });
+
 
     Route::post('/import/users', [ImportController::class, 'importUsers'])->name('import.users');
     Route::post('/import/modules', [ImportController::class, 'importModules'])->name('import.modules');
