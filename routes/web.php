@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/time-settings', [TimeSettingsController::class, 'index'])->name('time');
         Route::post('/year', [SettingsController::class, 'setYear'])->name('setYear');
         Route::resource('/', SettingsController::class)->name('*', '');
+        // sīks komentārs šim pašam merge-request ?
     });
 
 
