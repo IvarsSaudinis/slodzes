@@ -30,7 +30,9 @@ class ModulesController extends Controller
     {
         $modules_type = DB::table('modules_types')->get();
 
-        return view('modules.createOrUpdate', compact('modules_type'));
+        $module = new Modules();
+
+        return view('modules.createOrUpdate', compact('modules_type', 'module'));
     }
 
     /**
@@ -60,7 +62,7 @@ class ModulesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Modules $modules
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Modules $module)
     {

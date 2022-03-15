@@ -21,7 +21,8 @@
         "power-components/livewire-powergrid": "^2.2",
         "socialiteproviders/microsoft-graph": "^4.1",
         "spatie/db-dumper": "^3.0",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-permission": "^4.0",
+        "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

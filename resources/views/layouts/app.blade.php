@@ -16,7 +16,7 @@
         <script src="//unpkg.com/alpinejs" defer></script>
         @livewireStyles
         @powerGridStyles
-
+        @livewire('livewire-ui-modal')
     </head>
     <body class="font-sans antialiased">
 
@@ -186,7 +186,9 @@
                 <div class=" mx-auto px-4 sm:px-6 md:px-8">
                     <!-- Replace with your content -->
                     <div class="py-2">
+                        <!-- subcomponent start -->
                         {{ $slot }}
+                        <!-- subcomponent end/ -->
                     </div>
                     <!-- /End replace -->
                 </div>
