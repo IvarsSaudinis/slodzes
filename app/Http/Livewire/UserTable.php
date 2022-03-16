@@ -125,8 +125,8 @@ final class UserTable extends PowerGridComponent
                 ->route('users.create', []),
 
             Button::add('binding-modules-users')
-                ->caption(__('Moduļu sasaiste'))
-                ->class('inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500')
+                ->caption(__('Moduļu piesaiste'))
+                ->class('cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500')
                 // https://github.com/wire-elements/modal
                 ->emit('openModalModules', []),
                 // 'pg:eventRefresh-users'  => '$refresh',

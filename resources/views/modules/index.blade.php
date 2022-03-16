@@ -12,5 +12,15 @@
 
         </div>
     </div>
+    <script>
+        window.addEventListener('showAlert', event => {
+            alert(event.detail.message);
+        })
+
+        window.addEventListener('showModal', event => {
+            Livewire.emit('openModal', 'modules-plans-modal', [event.detail.modules, event.detail.count]);
+        })
+
+    </script>
 </x-app-layout>
 

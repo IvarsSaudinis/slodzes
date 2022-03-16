@@ -104,7 +104,38 @@ final class ModulesTable extends PowerGridComponent
                 ->class('inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md text-sm mx-2 text-white tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-0')
                 ->route('modules.create', []),
 
+            Button::add('add-to-module')
+                ->caption('Plāna piesaiste')
+                ->class('cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500')
+                ->emit('openModalPlans', []),
         ];
+    }
+
+
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(), [
+            'openModalPlans',
+        ]);
+    }
+
+    public function openModalPlans(): void
+    {
+        if (count($this->checkboxValues) == 0) {
+            $this->dispatchBrowserEvent('showAlert', ['message' => 'Nepieciešams atlasīt vismaz vienu moduli!']);
+
+            return;
+        }
+
+        $ids = implode(',', $this->checkboxValues);
+
+        $this->dispatchBrowserEvent('showModal',
+            [
+                'message' => 'Atlasītie moduļi: ' . $ids,
+                'modules' =>  $ids,
+                'count' => count($this->checkboxValues)
+            ]);
     }
 
     /*
@@ -190,7 +221,7 @@ final class ModulesTable extends PowerGridComponent
         return [
             Button::add('edit')
                 ->caption('Labot')
-                ->class('text-gray-600 hover:text-indigo-900')
+                ->class('text-gray-600 hover:text-blue-900')
                 ->route('modules.edit', ['module' => 'id']),
 
             Button::add('destroy')
