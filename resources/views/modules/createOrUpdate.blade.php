@@ -9,9 +9,12 @@
 
         <form name="modules" action="{{ $module->exists == null ? route('modules.store') : route('modules.update', $module->id) }}" method="POST">
 
-        @if(isset($module->exists))
-            @method('PATCH')
-        @endif
+
+            @if($module->exists)
+                @method('PATCH')
+            @else
+                @method('POST')
+            @endif
 
             @csrf
             <div class="mt-10 sm:mt-0">
@@ -87,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                @if(isset($module))
+                                @if($module->exists)
                                     @can('update', $module)
                                         <button type="submit"
                                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -119,6 +122,7 @@
                         </div>
                     </div>
     <!-- ------------------------------ -->
+                 @if(isset($modules_users))
                     <div class="mt-10 sm:mt-0">
                         <div class="md:grid md:grid-cols-3 md:gap-6">
                             <div class="md:col-span-1">
@@ -214,6 +218,7 @@
                             </div>
                         </div>
                     </div>
+                @endif
         <!-- ------------------------------ -->
 
 </div>
