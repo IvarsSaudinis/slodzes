@@ -138,9 +138,10 @@
 
                                                 <div class="px-4 sm:px-6 lg:px-8">
                                                     <div class="sm:flex sm:items-center">
-                                                        <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Pievienot</button>
+                                                        <a href="{{ route('users.index') }}"  class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Pievienot</a>
                                                     </div>
                                                     <div class="-mx-4 mt-3 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-lg">
+                                                     {{--   <pre>{{ var_dump($modules_users) }}</pre>--}}
                                                         <table class="min-w-full divide-y divide-gray-300">
                                                             <thead>
                                                             <tr>
@@ -152,24 +153,34 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm">
-                                                                    <div class="font-medium text-gray-900">Jānis Bērziņš</div>
-                                                                    <div class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
-                                                                        <span>janis.bezrizns@livt.lv</span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">janis.bezrizns@livt.lv</td>
-                                                                <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium">
-                                                                    <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">, Hobby</span></button>
-                                                                    <div class="absolute right-0 left-6 -top-px h-px bg-gray-200"></div>
-                                                                </td>
-                                                            </tr>
 
-                                                            <tr>
+                                                            @foreach($modules_users as $module_user)
+                                                                <tr>
+                                                                    <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm border-t border-transparent">
+                                                                        <div class="font-medium text-gray-900">
+                                                                            <a href="#">{{ $module_user->user->name ?? '' }} {{ $module_user->user->surname ?? '' }}</a>
+                                                                        </div>
+                                                                        <div class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
+                                                                            <span>{{ $module_user->user->email ?? '-' }}</span>
+                                                                        </div>
+                                                                        <div class="absolute right-0 left-6 -top-px h-px bg-gray-200"></div>
+                                                                    </td>
+                                                                    <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200">{{ $module_user->user->email ?? '-' }}</td>
+                                                                    <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium border-t border-transparent">
+                                                                        <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">,  {{ $module_user->user->name ?? '-' }}</span></button>
+                                                                        <div class="absolute right-6 left-0 -top-px h-px bg-gray-200"></div>
+                                                                    </td>
+                                                                </tr>
+
+
+                                                            @endforeach
+
+
+
+                                                            {{--<tr>
                                                                 <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm border-t border-transparent">
                                                                     <div class="font-medium text-gray-900">
-                                                                        <a href="#">Juris Stiegriņš</a>
+                                                                        <a href="#">X Juris Stiegriņš</a>
                                                                     </div>
                                                                     <div class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
                                                                         <span>juris@jur.lv</span>
@@ -181,24 +192,8 @@
                                                                     <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">, Startup</span></button>
                                                                     <div class="absolute right-6 left-0 -top-px h-px bg-gray-200"></div>
                                                                 </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm border-t border-transparent">
-                                                                    <div class="font-medium text-gray-900">
-                                                                        Anita Laurulapa
-                                                                    </div>
-                                                                    <div class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden">
-                                                                        <span>anita@lsda.lv</span>
-                                                                    </div>
-                                                                    <div class="absolute right-0 left-6 -top-px h-px bg-gray-200"></div>
-                                                                </td>
-                                                                <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200">anita@lsda.lv</td>
-                                                                <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium border-t border-transparent">
-                                                                    <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">, Startup</span></button>
-                                                                    <div class="absolute right-6 left-0 -top-px h-px bg-gray-200"></div>
-                                                                </td>
+                                                            </tr>--}}
 
-                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modules;
+use App\Models\ModulesUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,7 +69,11 @@ class ModulesController extends Controller
     {
         $modules_type = DB::table('modules_types')->get();
 
-        return view('modules.createOrUpdate', compact('module', 'modules_type'));
+        $modules_users = ModulesUsers::where('modules_id', $module->id)->with('user')->get();
+
+       // return dd($modules_users);
+
+        return view('modules.createOrUpdate', compact('module', 'modules_type', 'modules_users'));
     }
 
     /**
