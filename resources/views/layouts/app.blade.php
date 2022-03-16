@@ -17,6 +17,7 @@
         @livewireStyles
         @powerGridStyles
         @livewire('livewire-ui-modal')
+        @livewire('livewire-toast')
     </head>
     <body class="font-sans antialiased">
 
@@ -69,7 +70,7 @@
             </div>
         </div>
         <div class="flex flex-col w-0 flex-1 overflow-hidden">
-            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+            <div class="relative z-1 flex-shrink-0 flex h-16 bg-white shadow">
                 <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
                         @click="open = true">
                     <span class="sr-only">Open sidebar</span>

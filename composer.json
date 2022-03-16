@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ascsoftw/livewire-toast": "^1.0",
         "doctrine/dbal": "^3.1",
         "enlightn/enlightn": "^1.22",
         "fideloper/proxy": "^4.4",

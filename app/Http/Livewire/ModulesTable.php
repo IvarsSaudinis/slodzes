@@ -136,6 +136,8 @@ final class ModulesTable extends PowerGridComponent
                 'modules' =>  $ids,
                 'count' => count($this->checkboxValues)
             ]);
+
+
     }
 
     /*
@@ -313,5 +315,5 @@ final class ModulesTable extends PowerGridComponent
 
         return (is_string($message)) ? $message : 'Error!';
     }
-    */
+*/
 }

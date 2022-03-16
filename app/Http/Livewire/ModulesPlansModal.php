@@ -50,6 +50,7 @@ class ModulesPlansModal extends ModalComponent
 
         }
 
+        $this->emitTo('livewire-toast', 'show',  'Moduļi plānam pievienoti veiksmīgi');
 
     }
 

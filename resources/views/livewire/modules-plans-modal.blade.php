@@ -12,16 +12,16 @@
             </h3>
             <div class="mt-2">
                 <p class="text-sm text-gray-500">
-                    Šī funcionalitāte paredzēta, lai izveidotu sasaisti par mācībspēkiem konkrētam modulim. Izvēlieties attiecīgo plānu un spiediet pogu "Saglabāt"
+                    Šī funcionalitāte paredzēta, lai izveidotu sasaisti planam ar izvēlētiem moduļiem. Izvēlieties attiecīgo plānu un spiediet pogu "Saglabāt"
                 </p>
 
                 {{-- <p> {{ var_dump($users) }}</p>
                  <p> {{ var_dump($user_count) }}</p>--}}
                 <form name="modulesform" wire:submit.prevent="saveInfo">
                     <div class="mt-2">
-                        <label for="module" class="block text-sm font-medium text-gray-700">Izvēlētais modulis</label>
+                        <label for="module" class="block text-sm font-medium text-gray-700">Izvēlētais plāns</label>
                         <select wire:model="modalplan" id="module" name="location" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option>Izvēlieties moduli... </option>
+                            <option>Izvēlieties plānu... </option>
                             @foreach($plans as $plan)
                                 <option value="{{ $plan->id }}">{{ $plan->name }} <small>{{ $plan->year }}</small></option>
                             @endforeach
@@ -34,10 +34,10 @@
         </div>
     </div>
     <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse p-7">
-        <button wire:click="saveInfo" x-on:click="closeModalOnClickAway()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+        <button wire:click="saveInfo" x-on:click="closeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
             Saglabāt
         </button>
-        <button x-on:click="closeModalOnClickAway()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" >
+        <button x-on:click="closeModalOnEscape()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" >
             Atcelt
         </button>
     </div>

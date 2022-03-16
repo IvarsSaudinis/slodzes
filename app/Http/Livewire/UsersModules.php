@@ -62,7 +62,7 @@ class UsersModules extends ModalComponent
 
        }
 
-
+        $this->emitTo('livewire-toast', 'show', 'Lietotāji modulim pievienoti veiksmīgi');
     }
 
 
