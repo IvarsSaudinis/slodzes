@@ -77,6 +77,18 @@ class ModulesController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeuser(Request $request)
+    {
+        $module_user = ModulesUsers::findOrFail($request->get('user'));
+
+        $module_user->delete();
+
+        return back()->with(['Message' => 'Lietotājs noņemts']);
+    }
+    /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request

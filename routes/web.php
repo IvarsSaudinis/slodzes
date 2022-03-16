@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function() {
     Route::resource('/users',   UsersController::class)->name('*', 'users');
     Route::resource('/roles',   RolesController::class)->name('*', 'roles');
+    Route::post('modules/remove/user', [ModulesController::class, 'removeuser'])->name('modules.removeuser');
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
 
     Route::prefix('/settings')->name('settings.')->group(function () {

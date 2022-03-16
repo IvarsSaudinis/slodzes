@@ -167,8 +167,13 @@
                                                                     </td>
                                                                     <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200">{{ $module_user->user->email ?? '-' }}</td>
                                                                     <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium border-t border-transparent">
-                                                                        <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">,  {{ $module_user->user->name ?? '-' }}</span></button>
+                                                                        <form name="removeuser" method="post" action="{{ route('modules.removeuser') }}">
+                                                                        @csrf
+                                                                        @method('post')
+                                                                        <input name="user" type="hidden" value="{{ $module_user->id }}">
+                                                                        <button type="submit" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Noņemt<span class="sr-only">,  {{ $module_user->user->name ?? '-' }}</span></button>
                                                                         <div class="absolute right-6 left-0 -top-px h-px bg-gray-200"></div>
+                                                                        </form>
                                                                     </td>
                                                                 </tr>
 
