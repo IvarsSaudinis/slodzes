@@ -1,3 +1,13 @@
+# TODO
+
+* Plāna izvade
+* Pasniedzēju sasaiste ar moduļiem
+* Kalendāra sistēmas izveide (darba nedēļas, dienas)
+* Kopējā meklēšana (rezultātu izvada atsevišķā skatā)
+* TailWind atjaunošana
+* Koda ievietošana Githubā
+* Testu rakstīšana
+
 
 # Plāni
 
