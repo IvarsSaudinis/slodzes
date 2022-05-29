@@ -1,45 +1,44 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class AuthenticationTest extends TestCase
-{
-    use RefreshDatabase;
+uses(RefreshDatabase::class);
 
-    public function test_login_screen_can_be_rendered()
-    {
-        $response = $this->get('/login');
 
-        $response->assertStatus(200);
-    }
 
-    public function test_users_can_authenticate_using_the_login_screen()
-    {
-        $user = User::factory()->create();
+test('autorizācijas logs ir pieejams', function () {
 
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+    $response = $this->get('/login');
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
-    }
+    $response->assertStatus(200);
+});
 
-    public function test_users_can_not_authenticate_with_invalid_password()
-    {
-        $user = User::factory()->create();
+test('lietotāju var autentificēt autorizācija logā', function () {
 
-        $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'wrong-password',
-        ]);
+    $user = User::factory()->create();
 
-        $this->assertGuest();
-    }
-}
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticated();
+    $response->assertRedirect(RouteServiceProvider::HOME);
+
+});
+
+test('lietotāju nevar autentificēt, ja nepareiza parole', function () {
+
+    $user = User::factory()->create();
+
+    $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $this->assertGuest();
+});
+
+
