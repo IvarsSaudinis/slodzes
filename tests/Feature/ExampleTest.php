@@ -8,11 +8,11 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Prasts tests vai ir pieejama sākumlapa
      *
      * @return void
      */
-    public function test_example()
+    public function test_ir_pieejama_sakumlapa()
     {
         $response = $this->get('/');
 
