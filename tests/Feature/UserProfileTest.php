@@ -72,5 +72,20 @@ test('lietotājs var nomainīt savu paroli', function () {
 
     $response->assertSessionHas('message', 'Parole nomainīta');
 
+});
+
+test('lietotājs nevar izmantot īsu paroli', function () {
+
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)->get('/profile');
+
+    $response = $this->post('/profile/password', [
+        'current_password' => 'password',
+        'password' => 'short',
+        'password2' => 'short',
+    ]);
+
+    $response->assertSessionHasErrors('password');
 
 });
