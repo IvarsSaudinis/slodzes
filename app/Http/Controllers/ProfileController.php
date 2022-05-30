@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -34,6 +36,24 @@ class ProfileController extends Controller
         $user->save();
 
         return back()->with(['message'=> 'Profila informācija saglabāta']);
+    }
+
+    public function password(Request $request)
+    {
+        $this->validate($request,
+            [
+                'current_password' => 'required|password',
+                'password' => 'required|min:8',
+                'password2' => 'required|same:password'
+            ]
+        );
+
+        $user = User::find(Auth::user()->id);
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return back()->with(['message'=> 'Parole nomainīta']);
     }
 
 }

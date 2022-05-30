@@ -5,11 +5,40 @@
         </h1>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-4">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-sm sm:rounded-lg">
 
+                @if(session()->has('message'))
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
+                        <p class="font-bold">{{ session()->get('message') }}</p>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="rounded-md bg-red-50 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <!-- Heroicon name: solid/x-circle -->
+                                <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">Iesniedzot datus, tika reģistrētas {{ $errors->count() }} {{ $errors->count()>1 ? 'kļūdas' : 'kļūda'  }} </h3>
+                                <div class="mt-2 text-sm text-red-700">
+                                    <ul role="list" class="list-disc pl-5 space-y-1">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                @endif
 
                 <div class="mt-10 sm:mt-0">
                     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -70,31 +99,30 @@
                             <div class="px-4 sm:px-0">
                                 <h3 class="text-lg font-medium leading-6 text-gray-900">Paroles maiņa </h3>
                                 <p class="mt-1 text-sm text-gray-600">
-                                    Parolei ir nepieciešams būt vismaz 8 simbolu garai un jāsatur gan cipari, gan speciālie simboli
+                                    Parolei ir nepieciešams būt vismaz 8 simbolu garai un jāsatur gan cipari, gan speciālie simboli. Šī paroles maiņa nemainīs MS 365 paroli.
                                 </p>
                             </div>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="#" method="POST">
+                            <form action="{{ route('profile.password') }}" method="POST">
+                                @csrf
+                                @method("POST")
                                 <div class="shadow overflow-hidden sm:rounded-md">
                                     <div class="px-4 py-5 bg-white sm:p-6">
                                         <div class="grid grid-cols-6 gap-6">
-
-
-
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="current_password" class="block text-sm font-medium text-gray-700">Esošā parole</label>
-                                                <input type="text" name="current_password" id="current_password"   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="current_password" id="current_password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="password" class="block text-sm font-medium text-gray-700">Jaunā parole</label>
-                                                <input type="text" name="password" id="password"   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="password" id="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-4">
                                                 <label for="password2" class="block text-sm font-medium text-gray-700">Jaunā parole atkārtoti</label>
-                                                <input type="text" name="password2" id="password2"   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="password2" id="password2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
 
