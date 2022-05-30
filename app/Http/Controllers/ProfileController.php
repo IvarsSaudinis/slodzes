@@ -42,7 +42,7 @@ class ProfileController extends Controller
     {
         $this->validate($request,
             [
-                'current_password' => 'required|password',
+                'current_password' => 'required|current_password',
                 'password' => 'required|min:8',
                 'password2' => 'required|same:password'
             ]
