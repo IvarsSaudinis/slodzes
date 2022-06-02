@@ -59,7 +59,7 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <x-slot name="content" >
                         <x-dropdown-link :href="route('profile.index')" :active="request()->routeIs('profile')">
                             {{ __('Profils') }}
                         </x-dropdown-link>

@@ -128,7 +128,7 @@
                                    To: "transform opacity-0 scale-95"
                                -->
                                <div :hidden="!yearsOpen"
-                                    class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                    class="origin-top-right absolute z-20 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                    <div class="py-1" role="none">
                                        <form id="setYear" class=" divide-y divide-gray-100 " method="post" action="{{ route('settings.setYear') }}">
@@ -150,7 +150,7 @@
 
 
                         <!-- Profile dropdown -->
-                        <div class="ml-3 relative">
+                        <div class="ml-3 relative z-30">
                             <div>
                                 <button  @click="menuOpen = !menuOpen" type="button" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Atvērt izvēlni</span>
@@ -167,7 +167,7 @@
                                --}} {{--   <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>--}}
                                 <form id="logout" method="post" action="{{ route('logout') }}">
                                     @csrf
-                                    <a  href="javascript:;" onclick="document.getElementById('logout').submit();"  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Iziet</a>
+                                    <a  href="javascript:" onclick="document.getElementById('logout').submit();"  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Iziet</a>
                                 </form>
                             </div>
                         </div>
