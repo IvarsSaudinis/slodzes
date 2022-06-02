@@ -36,7 +36,10 @@ class PlansController extends Controller
 
 
     public function destroy(Plan $plan) {
-        //todo
-        dd("Deleting not implemented!", $plan->toArray());
+
+        $plan->delete();
+
+        return back()->with(['message'=> 'Plāns izdzēsts']);
+
     }
 }
