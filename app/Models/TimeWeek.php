@@ -27,7 +27,4 @@ class TimeWeek extends Model
     {
         return $date->format('d.m.Y');
     }
-
-
-
 }

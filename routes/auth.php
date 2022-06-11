@@ -64,6 +64,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
 
-Route::get('/login/365',  [AuthenticatedSessionController::class, 'redirectToProvider'])->name('auth365');
+Route::get('/login/365', [AuthenticatedSessionController::class, 'redirectToProvider'])->name('auth365');
 
-Route::get('/callback',  [AuthenticatedSessionController::class, 'handleProviderCallback']);
+Route::get('/callback', [AuthenticatedSessionController::class, 'handleProviderCallback']);

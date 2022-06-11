@@ -24,7 +24,6 @@ test('profila lapā parādās input lauks ar aizpildītu vārdu', function () {
     $response = $this->actingAs($user)->get('/profile');
 
     expect($response->getContent())->toContain('id="name" value="'. $user->name . '"');
-
 });
 
 test('profila lapā parādās input lauks ar aizpildītu uzvārdu', function () {
@@ -34,7 +33,6 @@ test('profila lapā parādās input lauks ar aizpildītu uzvārdu', function () 
     $response = $this->actingAs($user)->get('/profile');
 
     expect($response->getContent())->toContain('id="surname" value="'.$user->surname . '"');
-
 });
 
 test('profila lapā parādās input lauks ar aizpildītu e-pastu', function () {
@@ -44,7 +42,6 @@ test('profila lapā parādās input lauks ar aizpildītu e-pastu', function () {
     $response = $this->actingAs($user)->get('/profile');
 
     expect($response->getContent())->toContain('id="email" value="'.$user->email . '"');
-
 });
 
 test('profila lapā parādās input lauks ar aizpildītu amatu', function () {
@@ -54,7 +51,6 @@ test('profila lapā parādās input lauks ar aizpildītu amatu', function () {
     $response = $this->actingAs($user)->get('/profile');
 
     expect($response->getContent())->toContain('id="job_title" value="'.$user->job_title . '"');
-
 });
 
 
@@ -71,7 +67,6 @@ test('lietotājs var nomainīt savu paroli', function () {
     ]);
 
     $response->assertSessionHas('message', 'Parole nomainīta');
-
 });
 
 test('lietotājs nevar izmantot īsu paroli', function () {
@@ -87,5 +82,4 @@ test('lietotājs nevar izmantot īsu paroli', function () {
     ]);
 
     $response->assertSessionHasErrors('password');
-
 });

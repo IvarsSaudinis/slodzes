@@ -55,7 +55,6 @@ class ModulesController extends Controller
         $module->save();
 
         return redirect()->route('modules.index')->with(['message' => 'Modulis veiksmīgi izveidots!']);
-
     }
 
 

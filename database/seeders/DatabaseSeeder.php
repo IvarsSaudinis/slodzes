@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'job_title' => 'Programmētājs',
             'email' => 'ivars@ivars.lv',
             'password' => Hash::make('password'),
-        ]);
+         ]);
 
 
         \App\Models\User::factory(200)->create();
@@ -38,6 +38,5 @@ class DatabaseSeeder extends Seeder
         Role::create(['name'=> 'Administrators']);
         Role::create(['name'=> 'Mācībspēks']);
         Role::create(['name'=> 'Lietotājs']);
-
     }
 }

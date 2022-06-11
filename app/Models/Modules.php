@@ -28,5 +28,4 @@ class Modules extends Model
     {
         return $this->hasOne(ModuleType::class, 'id', 'modules_type_id');
     }
-
 }

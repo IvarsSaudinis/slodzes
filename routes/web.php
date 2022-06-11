@@ -26,9 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function() {
-    Route::resource('/users',   UsersController::class)->name('*', 'users');
-    Route::resource('/roles',   RolesController::class)->name('*', 'roles');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/users', UsersController::class)->name('*', 'users');
+    Route::resource('/roles', RolesController::class)->name('*', 'roles');
     Route::post('modules/remove/user', [ModulesController::class, 'removeuser'])->name('modules.removeuser');
     Route::resource('/modules', ModulesController::class)->name('*', 'modules');
 
@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/import/modules', [ImportController::class, 'importModules'])->name('import.modules');
     Route::resource('/import', ImportController::class)->name('*', 'import');
 
-    Route::get('/profile',  [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/profile/password', [ProfileController::class, 'password'])->name('profile.password');
 
@@ -56,8 +56,6 @@ Route::middleware(['auth'])->group(function() {
 //    Route::get('plans/{id}', [PlansController::class, 'show'])->name('plans.show');
 //    Route::get('plans/{id}/edit', [PlansController::class, 'edit'])->name('plans.edit');
 //    Route::get('/plans',  [PlansController::class, 'index'])->name('plans.index');
-
-
 });
 
 

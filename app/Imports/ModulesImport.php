@@ -22,13 +22,13 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
 
     private $rows = 0;
 
-    public function  __construct($plan)
+    public function __construct($plan)
     {
         $this->plan = $plan;
     }
 
     /**
-     * Importa faila galvene: Moduļa nosaukums	| Kods	| 1. kurss	| 2. kurss	| 3. kurss	| 4. kurss | Kopā	| Teorija |	Prakse
+     * Importa faila galvene: Moduļa nosaukums  | Kods  | 1. kurss  | 2. kurss  | 3. kurss  | 4. kurss | Kopā   | Teorija | Prakse
      *
      * @param Row $row
      */
@@ -37,10 +37,12 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
         $row = $row->toArray();
 
         // moduļa koda labošana/jauna moduļa pievienošana
-        $module = Modules::updateOrCreate(['name' => $row['modula_nosaukums']],
-        [
+        $module = Modules::updateOrCreate(
+            ['name' => $row['modula_nosaukums']],
+            [
             'name' => $row['modula_nosaukums'], 'code' => $row['kods']
-        ]);
+            ]
+        );
 
         // importējot moduļu sarakstu planam, izveidojam plāna struktūras atsauci
         $data = new PlanData();
@@ -61,54 +63,46 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
         $kopaa = $teorija + $prakse;
 
 
-        if($row['1_kurss']>0)
-         {
+        if ($row['1_kurss']>0) {
              $pd = new PlanDistribution();
              $pd->plan_data_id = $data->id;
              $pd->course = 1;
              //1 = tikai viens ieraksts
-             if($row['1_kurss']==($prakse + $teorija))
-             {
-                 $pd->theory = $teorija ?? 0 ;
-                 $pd->practice = $prakse ?? 0;
+            if ($row['1_kurss']==($prakse + $teorija)) {
+                $pd->theory = $teorija ?? 0 ;
+                $pd->practice = $prakse ?? 0;
 
-                 $teorija = 0;
-                 $prakse = 0;
-             }
+                $teorija = 0;
+                $prakse = 0;
+            }
              // ir kaut kas cits
-             else {
-                 // atlikuma rēķināšana praksei
-                 if($row['1_kurss'] > $teorija)
-                 {
-                     $pd->theory = $teorija;
-                     $pd->practice = $row['1_kurss'] - $teorija;
-                     // atlikušā prakse
-                     $teorija = 0;
-                     $prakse =  $prakse - $pd->practice;
+            else {
+                // atlikuma rēķināšana praksei
+                if ($row['1_kurss'] > $teorija) {
+                    $pd->theory = $teorija;
+                    $pd->practice = $row['1_kurss'] - $teorija;
+                    // atlikušā prakse
+                    $teorija = 0;
+                    $prakse =  $prakse - $pd->practice;
+                }
 
-                 }
-
-                 if($row['1_kurss'] < $teorija)
-                 {
-                     $pd->theory = $row['1_kurss'];
-                     $pd->practice = 0;
-                     // atlikušā teorija
-                     $teorija = $teorija - $pd->theory ;
-                 }
-
-             }
+                if ($row['1_kurss'] < $teorija) {
+                    $pd->theory = $row['1_kurss'];
+                    $pd->practice = 0;
+                    // atlikušā teorija
+                    $teorija = $teorija - $pd->theory ;
+                }
+            }
 
              $pd->save();
-         }
+        }
 
-        if($row['2_kurss']>0)
-        {
+        if ($row['2_kurss']>0) {
             $pd = new PlanDistribution();
             $pd->plan_data_id = $data->id;
             $pd->course = 2;
             //1 = tikai viens ieraksts
-            if($row['2_kurss']==($prakse + $teorija))
-            {
+            if ($row['2_kurss']==($prakse + $teorija)) {
                 $pd->theory = $teorija ?? 0 ;
                 $pd->practice = $prakse ?? 0;
 
@@ -118,38 +112,31 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
             // ir kaut kas cits
             else {
                 // atlikuma rēķināšana praksei
-                if($row['2_kurss'] > $teorija)
-                {
+                if ($row['2_kurss'] > $teorija) {
                     $pd->theory = $teorija;
                     $pd->practice = $row['2_kurss'] - $teorija;
                     // atlikušā prakse
                     $teorija = 0;
                     $prakse =  $prakse - $pd->practice;
-
                 }
 
-                if($row['2_kurss'] < $teorija)
-                {
+                if ($row['2_kurss'] < $teorija) {
                     $pd->theory = $row['2_kurss'];
                     $pd->practice = 0;
                     // atlikušā teorija
                     $teorija = $teorija - $pd->theory ;
                 }
-
-
             }
 
             $pd->save();
         }
 
-        if($row['3_kurss']>0)
-        {
+        if ($row['3_kurss']>0) {
             $pd = new PlanDistribution();
             $pd->plan_data_id = $data->id;
             $pd->course = 3;
             //1 = tikai viens ieraksts
-            if($row['3_kurss']==($prakse + $teorija))
-            {
+            if ($row['3_kurss']==($prakse + $teorija)) {
                 $pd->theory = $teorija ?? 0 ;
                 $pd->practice = $prakse ?? 0;
 
@@ -159,36 +146,30 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
             // ir kaut kas cits
             else {
                 // atlikuma rēķināšana praksei
-                if($row['3_kurss'] > $teorija)
-                {
+                if ($row['3_kurss'] > $teorija) {
                     $pd->theory = $teorija;
                     $pd->practice = $row['3_kurss'] - $teorija;
                     // atlikušā prakse
                     $teorija = 0;
                     $prakse =  $prakse - $pd->practice;
-
                 }
-                if($row['3_kurss'] < $teorija)
-                {
+                if ($row['3_kurss'] < $teorija) {
                     $pd->theory = $row['3_kurss'];
                     $pd->practice = 0;
                     // atlikušā teorija
                     $teorija = $teorija - $pd->theory ;
                 }
-
             }
 
             $pd->save();
         }
 
-        if($row['4_kurss']>0)
-        {
+        if ($row['4_kurss']>0) {
             $pd = new PlanDistribution();
             $pd->plan_data_id = $data->id;
             $pd->course =4;
             //1 = tikai viens ieraksts
-            if($row['4_kurss']==($prakse + $teorija))
-            {
+            if ($row['4_kurss']==($prakse + $teorija)) {
                 $pd->theory = $teorija ?? 0 ;
                 $pd->practice = $prakse ?? 0;
 
@@ -198,18 +179,15 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
             // ir kaut kas cits
             else {
                 // atlikuma rēķināšana praksei
-                if($row['4_kurss'] > $teorija)
-                {
+                if ($row['4_kurss'] > $teorija) {
                     $pd->theory = $teorija;
                     $pd->practice = $row['4_kurss'] - $teorija;
                     // atlikušā prakse
                     $teorija = 0;
                     $prakse =  $prakse - $pd->practice;
-
                 }
 
-                if($row['4_kurss'] < $teorija)
-                {
+                if ($row['4_kurss'] < $teorija) {
                     $pd->theory = $row['4_kurss'];
                     $pd->practice = 0;
                     // atlikušā teorija
@@ -230,8 +208,6 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
          \Log::info("Prakse: "   . $row['prakse']);
 
         ++$this->rows;
-
-
     }
     /**
     * @return array
@@ -268,5 +244,4 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
     {
         return $this->rows;
     }
-
 }

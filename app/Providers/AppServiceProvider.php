@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        view()->share( 'availableYears', Plan::getAvailableYears() );
+        view()->share('availableYears', Plan::getAvailableYears());
 
         // šādi, lai būtu pieeja sesijai.. :(
         view()->composer('*', function ($view) {

@@ -6,9 +6,12 @@ config:
   xdebug: true
   database: mariadb:10.3
   composer_version: '2.0.7'
+  config:
+    php: lando/config/php.ini
 proxy:
   appserver:
     - lvt.local
 services:
   database:
     portforward: 37080
+

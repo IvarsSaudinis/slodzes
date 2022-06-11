@@ -115,9 +115,11 @@ final class ModulesTable extends PowerGridComponent
     protected function getListeners()
     {
         return array_merge(
-            parent::getListeners(), [
+            parent::getListeners(),
+            [
             'openModalPlans',
-        ]);
+            ]
+        );
     }
 
     public function openModalPlans(): void
@@ -130,14 +132,14 @@ final class ModulesTable extends PowerGridComponent
 
         $ids = implode(',', $this->checkboxValues);
 
-        $this->dispatchBrowserEvent('showModal',
+        $this->dispatchBrowserEvent(
+            'showModal',
             [
                 'message' => 'Atlasītie moduļi: ' . $ids,
                 'modules' =>  $ids,
                 'count' => count($this->checkboxValues)
-            ]);
-
-
+            ]
+        );
     }
 
     /*

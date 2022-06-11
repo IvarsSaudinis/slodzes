@@ -10,5 +10,4 @@ class ModuleType extends Model
     use HasFactory;
 
     protected $table = 'modules_types';
-
 }

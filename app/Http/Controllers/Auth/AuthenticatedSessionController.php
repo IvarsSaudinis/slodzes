@@ -92,14 +92,13 @@ class AuthenticatedSessionController extends Controller
                 'remember_token' => $userdata->id,
                 'surname' => $userdata->user['surname'],
                 'password' => 'password'
-            ]);
+            ]
+        );
 
         // Autorizējam lietotāju
         Auth::login($user);
 
         // redirektē uz sākumlapu
         return redirect()->route('dashboard');
-
-
     }
 }

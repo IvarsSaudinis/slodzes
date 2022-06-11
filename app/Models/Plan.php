@@ -35,14 +35,10 @@ class Plan extends Model
     {
 
 
-        if(\Schema::hasTable('plan'))
-        {
+        if (\Schema::hasTable('plan')) {
              return Plan::withoutGlobalScope(SchoolYearScope::class)->select('year')->distinct()->get()->pluck('year');
         }
 
         return date('Y');
-
-
     }
-
 }

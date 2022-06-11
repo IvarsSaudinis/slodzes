@@ -24,7 +24,9 @@ class PlansController extends Controller
     {
         $plan = Plan::where('id', $id)->with(['data'])->first();
 
-        if(is_null($plan))  return  abort('404');
+        if (is_null($plan)) {
+            return  abort('404');
+        }
 
         return view('plans.show', compact('plan'));
     }
@@ -35,11 +37,11 @@ class PlansController extends Controller
     }
 
 
-    public function destroy(Plan $plan) {
+    public function destroy(Plan $plan)
+    {
 
         $plan->delete();
 
         return back()->with(['message'=> 'Plāns izdzēsts']);
-
     }
 }

@@ -26,7 +26,6 @@ test('lietotāju var autentificēt autorizācija logā', function () {
 
     $this->assertAuthenticated();
     $response->assertRedirect(RouteServiceProvider::HOME);
-
 });
 
 test('lietotāju nevar autentificēt, ja nepareiza parole', function () {
@@ -40,5 +39,3 @@ test('lietotāju nevar autentificēt, ja nepareiza parole', function () {
 
     $this->assertGuest();
 });
-
-

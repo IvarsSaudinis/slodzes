@@ -20,7 +20,4 @@ class PlanData extends Model
     {
         return $this->hasMany(PlanDistribution::class, 'plan_data_id', 'id');
     }
-
-
-
 }

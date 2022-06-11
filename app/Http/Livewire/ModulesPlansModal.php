@@ -39,19 +39,15 @@ class ModulesPlansModal extends ModalComponent
 
         $modules = explode(',', $this->modules);
 
-        foreach ($modules as $id)
-        {
+        foreach ($modules as $id) {
             \Log::info("ievietots userID: " . $id);
 
             \DB::table('plan_data')->updateOrInsert(
                 ['plan_id' => $this->modalplan, 'module_id' => $id],
                 ['updated_at' => Carbon::now()]
             );
-
         }
 
-        $this->emitTo('livewire-toast', 'show',  'Moduļi plānam pievienoti veiksmīgi');
-
+        $this->emitTo('livewire-toast', 'show', 'Moduļi plānam pievienoti veiksmīgi');
     }
-
 }

@@ -40,7 +40,8 @@ class ProfileController extends Controller
 
     public function password(Request $request)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'current_password' => 'required|current_password',
                 'password' => 'required|min:8',
@@ -55,5 +56,4 @@ class ProfileController extends Controller
 
         return back()->with(['message'=> 'Parole nomainīta']);
     }
-
 }

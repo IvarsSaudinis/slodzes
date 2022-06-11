@@ -69,8 +69,6 @@ class UsersController extends Controller
         $roles = Role::all();
 
         return view('users.createOrUpdate', compact('roles', 'user'));
-
-
     }
 
     /**
@@ -88,18 +86,12 @@ class UsersController extends Controller
         $user->job_title = $request->input('job_title');
         $user->email = $request->input('email');
 
-        if($request->has('password') )
-        {
-            if($request->input('password')!=$request->input('confirm_password'))
-            {
+        if ($request->has('password')) {
+            if ($request->input('password')!=$request->input('confirm_password')) {
                 return back()->with(['message' => 'Diemžēl izvēlētās paroles neatbilda kritērijiem']);
-
             } else {
-
                 $user->password = \Hash::make($request->input('password'));
-
             }
-
         }
 
 
@@ -120,7 +112,6 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         if ($user->delete()) {
-
             return back()->with(['message' => 'Lietotājs veiksmīgi izdzēsts!']);
         }
 

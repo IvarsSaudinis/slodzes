@@ -21,9 +21,8 @@ class ModulesPolicy
     {
         // iestrādāt ja grib pārrakstīt pārējās atļaujas
         if ($user->isDeveloper()) {
-
              return true;
-       }
+        }
     }
 
     /**

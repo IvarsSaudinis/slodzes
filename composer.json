@@ -24,7 +24,6 @@
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.1",
         "laravel/homestead": "^13.2",
@@ -32,7 +31,10 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
         "pestphp/pest": "^1.21",
-        "phpunit/phpunit": "^9.3.3"
+        "phpstan/phpstan": "^1.7",
+        "phpunit/phpunit": "^9.3.3",
+        "spatie/laravel-ignition": "^1.0",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
         "psr-4": {

@@ -31,6 +31,11 @@ pipeline {
                        sh 'php artisan test'
                    }
             }
+            stage("Static code analysis phpcs") {
+                     steps {
+                         sh "vendor/bin/phpcs"
+                     }
+             }
       }
 
 }

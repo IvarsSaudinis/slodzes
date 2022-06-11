@@ -354,6 +354,5 @@ class ModulesSeeder extends Seeder
         ];
 
         DB::table('modules')->insert($modules);
-
     }
 }
