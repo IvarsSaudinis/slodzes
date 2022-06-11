@@ -75,7 +75,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Obtain the user information from o365.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback()
     {
