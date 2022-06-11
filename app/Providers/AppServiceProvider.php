@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Plan;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
