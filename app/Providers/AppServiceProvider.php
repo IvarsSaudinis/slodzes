@@ -24,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share('availableYears', Plan::getAvailableYears());
+        if(!App::environment(['testing'])) {
+            view()->share( 'availableYears', Plan::getAvailableYears() );
+        }
         // šādi, lai būtu pieeja sesijai.. :(
         view()->composer('*', function ($view) {
             $view->with('schoolYear', \Session::get('schoolYear'));
