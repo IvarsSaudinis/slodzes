@@ -13,16 +13,16 @@ RUN php -v
 RUN touch database/database.sqlite
 
 # pakotņu uzstādīšana
-RUN composer install
+#RUN composer install
 
 # laravel atslēgas ģenerēšana un migrācija
-RUN php artisan key:generate
-RUN php artisan migrate --seed
+#RUN php artisan key:generate
+#RUN php artisan migrate --seed
 
-RUN php artisan test
+#RUN php artisan test
 # servera startēšanai lokāli
-CMD php artisan serve --host=0.0.0.0 --port=8181
-EXPOSE 8181
+#CMD php artisan serve --host=0.0.0.0 --port=8181
+#EXPOSE 8181
 
 
 ## helperi
