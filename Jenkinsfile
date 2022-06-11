@@ -5,29 +5,28 @@ pipeline {
         }
      }
    stages {
-            stage('jenkins file selftest info') {
+            stage('Prepare package installation using composer') {
                  steps {
                      sh 'php -v'
                      sh 'pwd'
                      sh 'ls -la'
+                     sh 'cp .env.testing .env'
+                     sh 'touch database/database.sqlite'
                  }
              }
-            stage('Install php packages') {
+            stage('Install packages') {
                    steps {
-                       sh 'cp .env.testing .env'
-                       sh 'touch database/database.sqlite'
                        sh 'rm composer.lock'
                        sh 'composer install'
                    }
              }
-            stage('DB SEED') {
+            stage('Database seeding') {
                   steps {
                       sh 'php artisan key:generate'
                       sh 'php artisan migrate --seed'
                   }
               }
-
-            stage('Test') {
+            stage('Test (Features)') {
                    steps {
                        sh 'php artisan test'
                    }

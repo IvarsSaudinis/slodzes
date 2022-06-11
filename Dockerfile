@@ -8,9 +8,9 @@ WORKDIR /app
 COPY . /app
 
 # db sagatavošana
-RUN cp .env.testing .env
-RUN php -v
-RUN touch database/database.sqlite
+#RUN cp .env.testing .env
+#RUN php -v
+#RUN touch database/database.sqlite
 
 # pakotņu uzstādīšana
 #RUN composer install
