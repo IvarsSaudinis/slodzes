@@ -5,25 +5,22 @@ pipeline {
         }
      }
    stages {
-          stage('Install packages') {
+        stage('DB SEED') {
+              steps {
+                  sh 'artisan key:generate'
+                  sh 'artisan migrate --seed'
+              }
+          }
+        stage('Install php packages') {
               steps {
                   sh 'composer install'
               }
-          }
-      }
-  stages {
-         stage('Seed DB') {
-             steps {
-                 sh 'artisan key:generate'
-                 sh 'artisan migrate --seed'
-             }
-         }
-     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'php artisan test'
-            }
         }
-    }
+        stage('Test') {
+               steps {
+                   sh 'php artisan test'
+               }
+        }
+      }
+
 }
