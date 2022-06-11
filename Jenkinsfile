@@ -5,15 +5,16 @@ pipeline {
         }
      }
    stages {
-            stage('jenkins file selftest') {
+            stage('jenkins file selftest info') {
                  steps {
                      sh 'php -v'
                      sh 'pwd'
-                     sh 'ls'
+                     sh 'ls -la'
                  }
              }
         stage('DB SEED') {
               steps {
+                  sh 'cp .env.testing .env'
                   sh 'php artisan key:generate'
                   sh 'php artisan migrate --seed'
               }
