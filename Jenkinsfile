@@ -10,20 +10,17 @@ pipeline {
                   sh 'composer install'
               }
           }
+           stage('Seed DB') {
+               steps {
+                   sh 'artisan key:generate'
+                   sh 'artisan migrate --seed'
+               }
+           }
+            stage('Test') {
+               steps {
+                   sh 'php artisan test'
+               }
+           }
       }
-  stages {
-         stage('Seed DB') {
-             steps {
-                 sh 'artisan key:generate'
-                 sh 'artisan migrate --seed'
-             }
-         }
-     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'php artisan test'
-            }
-        }
-    }
+
 }
