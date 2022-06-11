@@ -48,7 +48,7 @@ class ImportController extends Controller
          $request->validate([
             'plan_name' => 'required|max:255',
             'year' => 'required|numeric|min:1901|max:2155',
-        ]);
+         ]);
 
         // Jauna plāna izveide
         $plan = new Plan();
@@ -66,8 +66,4 @@ class ImportController extends Controller
 
         return back()->with(['message'=>'Dati importēti! Kopā ' . $module_import->getRowCount() . ' rindas.']);
     }
-
-
-
-
 }
