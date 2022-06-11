@@ -5,7 +5,7 @@ pipeline {
         }
      }
    stages {
-            stage('Testing jenkins and docker') {
+            stage('jenkins file selftest') {
                  steps {
                      sh 'php -v'
                      sh 'pwd'
@@ -14,8 +14,8 @@ pipeline {
              }
         stage('DB SEED') {
               steps {
-                  sh 'artisan key:generate'
-                  sh 'artisan migrate --seed'
+                  sh 'php artisan key:generate'
+                  sh 'php artisan migrate --seed'
               }
           }
         stage('Install php packages') {
