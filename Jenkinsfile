@@ -21,6 +21,7 @@ pipeline {
              }
             stage('DB SEED') {
                   steps {
+                      sh 'touch database/database.sqlite'
                       sh 'php artisan key:generate'
                       sh 'php artisan migrate --seed'
                   }
