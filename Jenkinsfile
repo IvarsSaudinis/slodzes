@@ -12,23 +12,25 @@ pipeline {
                      sh 'ls -la'
                  }
              }
-        stage('DB SEED') {
-              steps {
-                  sh 'cp .env.testing .env'
-                  sh 'php artisan key:generate'
-                  sh 'php artisan migrate --seed'
+            stage('Install php packages') {
+                   steps {
+                       sh 'rm composer.lock'
+                       sh 'composer install'
+                   }
+             }
+            stage('DB SEED') {
+                  steps {
+                      sh 'cp .env.testing .env'
+                      sh 'php artisan key:generate'
+                      sh 'php artisan migrate --seed'
+                  }
               }
-          }
-        stage('Install php packages') {
-              steps {
-                  sh 'composer install'
-              }
-        }
-        stage('Test') {
-               steps {
-                   sh 'php artisan test'
-               }
-        }
+
+            stage('Test') {
+                   steps {
+                       sh 'php artisan test'
+                   }
+            }
       }
 
 }
