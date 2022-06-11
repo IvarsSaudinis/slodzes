@@ -14,13 +14,13 @@ pipeline {
              }
             stage('Install php packages') {
                    steps {
+                       sh 'cp .env.testing .env'
                        sh 'rm composer.lock'
                        sh 'composer install'
                    }
              }
             stage('DB SEED') {
                   steps {
-                      sh 'cp .env.testing .env'
                       sh 'php artisan key:generate'
                       sh 'php artisan migrate --seed'
                   }
