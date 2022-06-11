@@ -5,6 +5,13 @@ pipeline {
         }
      }
    stages {
+            stage('Testing jenkins and docker') {
+                 steps {
+                     sh 'php -v'
+                     sh 'pwd'
+                     sh 'ls'
+                 }
+             }
         stage('DB SEED') {
               steps {
                   sh 'artisan key:generate'
