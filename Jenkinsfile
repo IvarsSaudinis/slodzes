@@ -15,13 +15,13 @@ pipeline {
             stage('Install php packages') {
                    steps {
                        sh 'cp .env.testing .env'
+                       sh 'touch database/database.sqlite'
                        sh 'rm composer.lock'
                        sh 'composer install'
                    }
              }
             stage('DB SEED') {
                   steps {
-                      sh 'touch database/database.sqlite'
                       sh 'php artisan key:generate'
                       sh 'php artisan migrate --seed'
                   }
