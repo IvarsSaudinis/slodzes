@@ -74,9 +74,7 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
 
                 $teorija = 0;
                 $prakse = 0;
-            }
-             // ir kaut kas cits
-            else {
+            } else {
                 // atlikuma rēķināšana praksei
                 if ($row['1_kurss'] > $teorija) {
                     $pd->theory = $teorija;
@@ -108,9 +106,7 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
 
                 $teorija = 0;
                 $prakse = 0;
-            }
-            // ir kaut kas cits
-            else {
+            } else {
                 // atlikuma rēķināšana praksei
                 if ($row['2_kurss'] > $teorija) {
                     $pd->theory = $teorija;
@@ -142,9 +138,7 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
 
                 $teorija = 0;
                 $prakse = 0;
-            }
-            // ir kaut kas cits
-            else {
+            } else {
                 // atlikuma rēķināšana praksei
                 if ($row['3_kurss'] > $teorija) {
                     $pd->theory = $teorija;
@@ -175,9 +169,7 @@ class ModulesImport implements OnEachRow, WithHeadingRow, SkipsEmptyRows, WithVa
 
                 $teorija = 0;
                 $prakse = 0;
-            }
-            // ir kaut kas cits
-            else {
+            } else {
                 // atlikuma rēķināšana praksei
                 if ($row['4_kurss'] > $teorija) {
                     $pd->theory = $teorija;
