@@ -36,15 +36,19 @@ class ModulesController extends Controller
         return view('modules.createOrUpdate', compact('modules_type', 'module'));
     }
 
-    /**
+    /** 'code' => 'required|numeric|min:1901|max:2155',
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //todo: store requst, kas validētu vai ir cipari un vajadzīgie lauki
+        $request->validate([
+            'name' => 'required|max:255'
+        ],
+        ['name.required' => 'Nosaukums plānam ir obligāts']);
 
         $module = new Modules();
         $module->name = $request->input('name');
