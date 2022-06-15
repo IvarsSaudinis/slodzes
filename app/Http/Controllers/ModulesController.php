@@ -45,10 +45,12 @@ class ModulesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required|max:255'
-        ],
-        ['name.required' => 'Nosaukums plānam ir obligāts']);
+            ],
+            ['name.required' => 'Nosaukums plānam ir obligāts']
+        );
 
         $module = new Modules();
         $module->name = $request->input('name');
