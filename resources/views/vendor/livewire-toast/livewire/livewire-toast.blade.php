@@ -1,4 +1,4 @@
-<div aria-live="assertive" class="fixed inset-0 z-10 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start {{$positionCss}} @if($hideOnClick) cursor-pointer @endif"
+<div x-cloak aria-live="assertive" class="fixed inset-0 z-10 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start {{$positionCss}} @if($hideOnClick) cursor-pointer @endif"
      x-data="{show: false, timeout: null, duration: null}"
      @if($message)
      x-init="() => { duration = @this.duration; clearTimeout(timeout); show = true;

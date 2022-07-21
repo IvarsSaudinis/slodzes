@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
+use App\Models\EduYear;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -60,13 +61,10 @@ class SettingsController extends Controller
 
         // reseto izvēlēto mācibu gadu
         if ($year == "-1") {
-            session(['schoolYear' => null]);
+            session(['edu_year' => null]);
         }
 
-        // sesijā saglabā izvēlētos mācību gadu
-        if (in_array($year, Plan::getAvailableYears()->toArray())) {
-            session(['schoolYear' => $year]);
-        }
+        session(['edu_year' => EduYear::find($year)]);
 
         return back();
     }

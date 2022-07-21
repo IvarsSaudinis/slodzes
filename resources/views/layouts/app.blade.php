@@ -11,7 +11,9 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        <style>
+            [x-cloak] { display: none }
+        </style>
         <link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}">
         <script src="//unpkg.com/alpinejs" defer></script>
         @livewireStyles
@@ -19,11 +21,11 @@
         @livewire('livewire-ui-modal')
         @livewire('livewire-toast')
     </head>
-    <body class="font-sans antialiased">
+    <body  class="font-sans antialiased">
 
     <div  x-data="{ open: false, menuOpen:false, yearsOpen:false }" @keydown.window.escape="open = false" class="h-screen flex overflow-hidden bg-gray-100">
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-        <div x-show="open" class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
+        <div x-cloak x-show="open" class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
 
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
 
@@ -106,10 +108,10 @@
                                <div>
                                    <button title="Mācību gads" @click="yearsOpen = !yearsOpen"  type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
 
-                                       @if($schoolYear)
-                                            {{$schoolYear}}
+                                       @if(isset($edu_year->name))
+                                           <strong>{{$edu_year->name   }}</strong>.  mācību gads
                                        @else
-                                           Mācību gads
+                                           Mācību gads nav izvēlēts!
                                        @endif
                                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -127,18 +129,15 @@
                                    From: "transform opacity-100 scale-100"
                                    To: "transform opacity-0 scale-95"
                                -->
-                               <div :hidden="!yearsOpen"
+                               <div x-cloak :hidden="!yearsOpen"
                                     class="origin-top-right absolute z-20 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                    <div class="py-1" role="none">
                                        <form id="setYear" class=" divide-y divide-gray-100 " method="post" action="{{ route('settings.setYear') }}">
                                            @csrf
-                                           <div class="py-1">
-                                               <button name="year" value="-1" class="text-gray-700 text-left block px-4 py-2 block" style="width: 100%" role="menuitem" tabindex="-1" id="menu-item-0">Visi gadi</button>
-                                           </div>
                                          <div  class="py-1">
                                              @foreach($availableYears as $y)
-                                                 <button name="year" value="{{$y}}"  style="width: 100%"  class="text-gray-700 text-left block px-4 py-2 text-sm block @if($y === $schoolYear) bg-gray-100 text-gray-900 @endif" role="menuitem" tabindex="-1" id="menu-item-0">{{$y}}</button>
+                                                 <button name="year" value="{{$y->id}}"  style="width: 100%"  class="text-gray-700 text-left block px-4 py-2 text-sm block @if($y->id === $edu_year) bg-gray-100 text-gray-900 @endif" role="menuitem" tabindex="-1" id="menu-item-0"> <strong>{{$y->name}}</strong> mācību gads</button>
                                              @endforeach
                                          </div>
 
@@ -159,7 +158,7 @@
                             </div>
 
 
-                            <div :hidden="!menuOpen"  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <div x-cloak :hidden="!menuOpen"  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                                 <!-- Active: "bg-gray-100", Not Active: "" -->
                                 <p class="block px-4 py-2 text-sm text-gray-700 font-bold" > {{ Auth::user()->name }} {{ Auth::user()->surname }}</p>
 
@@ -176,7 +175,7 @@
             </div>
 
 
-    <div x-data="{ open: false }" @keydown.window.escape="open = false" class="h-screen flex overflow-hidden bg-gray-100">
+    <div x-cloak x-data="{ open: false }" @keydown.window.escape="open = false" class="h-screen flex overflow-hidden bg-gray-100">
 
         <!-- Static sidebar for desktop -->
         <main class="flex-1 relative overflow-y-auto focus:outline-none">

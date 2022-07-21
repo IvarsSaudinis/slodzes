@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\EduYear;
 use App\Models\Plan;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,9 +31,17 @@ class AppServiceProvider extends ServiceProvider
 
         view()->share('availableYears', Plan::getAvailableYears());
 
-        // šādi, lai būtu pieeja sesijai.. :(
-        view()->composer('*', function ($view) {
-            $view->with('schoolYear', \Session::get('schoolYear'));
+       if(!Session::has('edu_year'))
+        {
+            Session::put(['edu_year '=> EduYear::orderBy('id', 'desc')->first()] );
+        }
+
+        // šādi, lai būtu pieeja sesijai.. :( default sesijas vērtību derētu pārrēķināt
+        view()->composer('layouts.app', function ($view) {
+
+        //    $edu_year = EduYear::orderBy('id', 'desc')->first();
+
+            $view->with('edu_year', EduYear::find(Session::get('edu_year', EduYear::orderBy('id', 'desc')->first() )->id ));
         });
     }
 }

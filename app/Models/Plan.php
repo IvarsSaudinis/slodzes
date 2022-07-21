@@ -34,11 +34,8 @@ class Plan extends Model
     public static function getAvailableYears()
     {
 
-
-        if (\Schema::hasTable('plan')) {
-             return Plan::withoutGlobalScope(SchoolYearScope::class)->select('year')->distinct()->get()->pluck('year');
+        if (\Schema::hasTable('edu_year')) {
+             return EduYear::withoutGlobalScope(SchoolYearScope::class)->orderBy('name')->get();
         }
-
-        return date('Y');
     }
 }
