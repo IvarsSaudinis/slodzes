@@ -18,13 +18,16 @@
                                 <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Nedēļas numurs
+                                        Mācību nedēļas numurs
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Kalendāra nedēļas numurs
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Periods
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Nosaukums
+                                        Tips
                                     </th>
 
                                     <th scope="col" class="relative px-6 py-3">
@@ -36,17 +39,20 @@
                                 @foreach($weeks as $week)
                                 <tr >
                                     <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $week->id }}
+                                        {{ $week->number }}
+                                    </td>
+                                    <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $week->calendar_week_number }}
                                     </td>
                                     <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                                        {{  $week->start->format('d.m.Y') }} - {{  $week->start->addDay(6)->format('d.m.Y')  }}
+                                        {{  $week->start_date->format('d.m.Y') }} - {{  $week->start_date->addDay(6)->format('d.m.Y')  }}
                                     </td>
                                     <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $week->name }}
+                                        {{ $week->name->name }}
                                     </td>
 
                                     <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Labot</a>
+                                      {{--  <a href="#" class="text-indigo-600 hover:text-indigo-900">Labot</a>--}}
                                     </td>
                                 </tr>
                                 @endforeach

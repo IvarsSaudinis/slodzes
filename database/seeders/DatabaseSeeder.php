@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\EduWeekType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +39,9 @@ class DatabaseSeeder extends Seeder
         Role::create(['name'=> 'Administrators']);
         Role::create(['name'=> 'Mācībspēks']);
         Role::create(['name'=> 'Lietotājs']);
+
+        // create basic week type
+        EduWeekType::create(['id' => 1, 'name' => 'Mācības']);
+        EduWeekType::create(['id' => 2, 'name' => 'Brīvlaiks']);
     }
 }
