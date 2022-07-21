@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ModulesImport;
 use App\Imports\UsersImport;
+use App\Models\EduYear;
 use App\Models\Plan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -21,7 +22,9 @@ class ImportController extends Controller
     {
         $roles = Role::all();
 
-        return view('import.index', compact('roles'));
+        $years = EduYear::all();
+
+        return view('import.index', compact('roles', 'years'));
     }
 
     /**
@@ -47,13 +50,13 @@ class ImportController extends Controller
     {
          $request->validate([
             'plan_name' => 'required|max:255',
-            'year' => 'required|numeric|min:1901|max:2155',
+            'year' => 'required|numeric|min:1|max:20',
          ]);
 
         // Jauna plāna izveide
         $plan = new Plan();
         $plan->name = $request->get('plan_name');
-        $plan->year = $request->get('year');
+        $plan->edu_year_id = $request->get('year');
         $plan->save();
 
 

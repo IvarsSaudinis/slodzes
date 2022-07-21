@@ -62,7 +62,12 @@
 
                                             <div class="col-span-1 sm:col-span-1">
                                                 <label for="year" class="block text-sm font-medium text-gray-700">Gads <span class="text-red-500 required-dot">*</span></label>
-                                                <input type="number" name="year" id="year" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ">
+                                                <select id="year" name="year" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ">
+                                                    @foreach($years as $year)
+                                                        <option @if(session('edu_year')->id == $year->id) selected @endif value="{{ $year->id }}">{{ $year->name }}. mācību gads</option>
+                                                    @endforeach
+                                                </select>
+
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
