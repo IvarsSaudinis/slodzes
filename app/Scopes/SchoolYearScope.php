@@ -18,11 +18,11 @@ class SchoolYearScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         // ja ir aizpidlīts konkrēts sesijas mainīgais, tad automātiski Plans modelim ir papildus scope
-        $schoolYear = session('edu_year_id', null);
+        $schoolYear = session('edu_year', null);
 
         if ($schoolYear) {
             $builder->where(function ($query) use ($schoolYear) {
-                $query->where('edu_year_id', $schoolYear);
+                $query->where('edu_year_id', $schoolYear->id);
             });
         }
     }
