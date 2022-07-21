@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/settings')->name('settings.')->group(function () {
         Route::get('/backup', [SettingsController::class, 'dumpSql'])->name('backup');
         Route::get('/time-settings', [TimeSettingsController::class, 'index'])->name('time');
+        Route::get('/time-settings/create', [TimeSettingsController::class, 'create'])->name('time-settings.create');
         Route::post('/year', [SettingsController::class, 'setYear'])->name('setYear');
         Route::resource('/', SettingsController::class)->name('*', '');
         // sīks komentārs šim pašam merge-request ?

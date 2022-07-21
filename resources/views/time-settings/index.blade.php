@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Nedēļu sadalījums 21./22. m.g.') }}
+        {{ __('Semestru nedēļu sadalījums: ' . $year->name) }}
     </x-slot>
 
     <div class="py-2">
@@ -48,7 +48,7 @@
                                         {{  $week->start_date->format('d.m.Y') }} - {{  $week->start_date->addDay(6)->format('d.m.Y')  }}
                                     </td>
                                     <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $week->name->name }}
+                                        {{ $week->week_type->name }}
                                     </td>
 
                                     <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
@@ -57,7 +57,7 @@
                                 </tr>
                                 @endforeach
 
-                                <!-- More people... -->
+                                <!-- More weeks... -->
                                 </tbody>
                             </table>
                         </div>
@@ -69,18 +69,18 @@
             <div class="bg-white shadow sm:rounded-lg mt-4">
                 <div class="px-4 py-5 sm:p-6">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Mācību gada nedēļu sadalījums,
+                        Jauna mācību gada izveide
                     </h3>
                     <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                         <div class="max-w-xl text-sm text-gray-500">
                             <p>
-                                Jauna mācību gada nedēļu saraksta tabulas ģenerēšana
+                                Jauna mācību gada izveide un tā nedēļu saraksta tabulas ģenerēšana
                             </p>
                         </div>
                         <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
-                            <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
-                                Izveidot mācību gada sadalījuma tabulu
-                            </button>
+                            <a href="{{ route('settings.time-settings.create') }}" type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                                Izveidot jaunu mācību gadu
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -69,9 +69,17 @@ class EduWeek extends Model
     /**
      * Get week type name from edu_week_type.name
      */
-    public function name()
+    public function week_type()
     {
         return $this->hasOne(EduWeekType::class, 'id', 'edu_week_type_id');
+    }
+
+    /**
+     * Get year  from edu_year table
+     */
+    public function year()
+    {
+        return $this->hasOne(EduYear::class, 'id', 'edu_year_id');
     }
 
 }
