@@ -40,8 +40,6 @@ class DatabaseSeeder extends Seeder
         Role::create(['name'=> 'Mācībspēks']);
         Role::create(['name'=> 'Lietotājs']);
 
-        // create basic week type
-        EduWeekType::create(['id' => 1, 'name' => 'Mācības']);
-        EduWeekType::create(['id' => 2, 'name' => 'Brīvlaiks']);
+
     }
 }
