@@ -64,7 +64,7 @@
                                                 <label for="year" class="block text-sm font-medium text-gray-700">Gads <span class="text-red-500 required-dot">*</span></label>
                                                 <select id="year" name="year" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ">
                                                     @foreach($years as $year)
-                                                        <option @if(session('edu_year')->id == $year->id) selected @endif value="{{ $year->id }}">{{ $year->name }}. mācību gads</option>
+                                                        <option @if((session('edu_year')->id ?? 1) == $year->id) selected @endif value="{{ $year->id }}">{{ $year->name }}. mācību gads</option>
                                                     @endforeach
                                                 </select>
 

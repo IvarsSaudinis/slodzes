@@ -79,7 +79,7 @@ final class PlansTable extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name', function (Plan $model) {
-                return $model->name . '<div class="text-sm text-gray-400">' . $model->year . '</div>';
+                return '<a href="' . route('plans.show', $model->id ) .'">' . $model->name . '</a>';
             })
             ->addColumn('year')
             ->addColumn('burden', function (Plan $model) {

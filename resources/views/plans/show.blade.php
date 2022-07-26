@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-             {{ $plan->name }} ({{ $plan->year }})
+             {{ $plan->name }}
     </x-slot>
 
     <div class="py-2">
