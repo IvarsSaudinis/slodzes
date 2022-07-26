@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-
+    Route::post('/plans/deletedata/{id}',  [PlansController::class, 'deletedata'])->name('plans.deletedata');
     Route::resource('plans', PlansController::class)->only(['show','edit','index', 'destroy']);
 //    Route::get('plans/{id}', [PlansController::class, 'show'])->name('plans.show');
 //    Route::get('plans/{id}/edit', [PlansController::class, 'edit'])->name('plans.edit');

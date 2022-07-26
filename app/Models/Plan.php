@@ -17,7 +17,7 @@ class Plan extends Model
      */
     public function data()
     {
-        return $this->hasMany(PlanData::class);
+        return $this->hasMany(PlanData::class)->with(['distribution', 'modulename']);
     }
 
     /**

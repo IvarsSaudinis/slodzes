@@ -103,7 +103,15 @@
                                                 {{ $total ?? ''}}
                                             </div>
                                         </td>
-                                        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{--Labot--}}</td>
+                                        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <form method="post" action="{{ route('plans.deletedata', $data->id) }}">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="plan_data" value="{{ $data->id }}">
+                                                <x-button type="submit">Dzēst</x-button>
+                                            </form>
+
+                                        </td>
                                     </tr>
 
                                 @endforeach
@@ -112,7 +120,9 @@
 
 
                                 <tr>
-                                    <td colspan="7" class="px-6 py-4 whitespace-nowrap"><x-link-button href="{{ route('plans.edit', $plan->id) }}">Pievienot</x-link-button></td>
+                                    <td colspan="7" class="px-6 py-4 whitespace-nowrap">
+                                        <x-link-button onclick="Livewire.emit('openModal', 'modal.add-module-to-plan', {{ json_encode(['plan' => $plan]) }})">Pievienot</x-link-button>
+                                    </td>
                                 </tr>
                                 </tbody>
 

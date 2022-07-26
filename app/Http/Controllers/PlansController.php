@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\PlanData;
+use App\Models\PlanDistribution;
 use Illuminate\Http\Request;
 
 class PlansController extends Controller
@@ -44,4 +46,21 @@ class PlansController extends Controller
 
         return back()->with(['message'=> 'Plāns izdzēsts']);
     }
+
+    /**
+     * Dzēst moduļa datus no plāna
+     * @return void
+     */
+    public function deletedata(Request $request, $id)
+    {
+        $plan_data_id = $request->get('plan_data');
+
+        // prasta dzešana
+        PlanDistribution::where('plan_data_id', $plan_data_id)->delete();
+        PlanData::find($plan_data_id)->delete();
+
+        return back()->with(['message' => 'Modulis izdzēsts no plāna']);
+
+    }
+
 }
